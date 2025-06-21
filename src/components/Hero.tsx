@@ -1,9 +1,16 @@
 import { motion } from 'framer-motion'
-import { FiArrowDown, FiGithub, FiLinkedin, FiTwitter, FiDownload } from 'react-icons/fi'
+import { FiArrowDown, FiGithub, FiLinkedin, FiDownload } from 'react-icons/fi'
 
 const Hero = () => {
   const scrollToAbout = () => {
     const element = document.querySelector('#about')
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' })
+    }
+  }
+
+  const scrollToProjects = () => {
+    const element = document.querySelector('#projects')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
@@ -125,6 +132,7 @@ const Hero = () => {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              onClick={scrollToProjects}
               className="gradient-border px-8 py-4 text-white font-medium rounded-lg flex items-center space-x-2 hover:shadow-lg transition-all duration-300"
             >
               <span>Ver Proyectos</span>

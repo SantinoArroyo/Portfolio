@@ -31,7 +31,7 @@ const Projects = () => {
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
-      images: ['/ia-1.jpg', '/ia-2.jpg', '/ia-3.jpg']
+      images: ['/proyectos/ia-investigacion.jpg', '/proyectos/ia-ml.jpg', '/proyectos/ia-analisis.jpg']
     },
     {
       id: 2,
@@ -43,19 +43,19 @@ const Projects = () => {
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
-      images: ['/data-1.jpg', '/data-2.jpg']
+      images: ['/proyectos/dashboard-powerbi.jpg', '/proyectos/analisis-datos.jpg']
     },
     {
       id: 3,
       title: 'Disertante en Seminario Smart Grids & IA',
       description: 'Presentación sobre la aplicación de la IA en redes eléctricas inteligentes.',
-      detailedDescription: 'Tuve el honor de ser invitado como disertante en el seminario interno sobre Redes Eléctricas Inteligentes (Smart Grids) e Inteligencia Artificial en la UTN - Facultad Regional Córdoba. Mi presentación se centró en cómo los algoritmos de IA pueden optimizar la distribución de energía, predecir fallos y mejorar la eficiencia de la red, compartiendo conocimientos y casos de estudio con estudiantes y profesionales del sector.',
+      detailedDescription: 'Tuve el honor de ser invitado como disertante en el seminario interno sobre Redes Eléctricas Inteligentes (Smart Grids) e Inteligencia Artificial en la UTN - Facultad Regional Córdoba. Nuestra presentación se centró en cómo los algoritmos de IA pueden ser utilizados para realizar predicciones de producción de energía eléctrica. Junto al grupo GISAI, presentamos nuestros modelos de predicción (SARIMA, Holt-Winters y LSTM) para realizar 1 año de predicciones de producción fotovoltaica de una agrupación de paneles solares, compartiendo conocimientos y casos de estudio con profesionales del sector.',
       category: 'speaking',
       technologies: ['Inteligencia Artificial', 'Smart Grids', 'Oratoria'],
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
-      images: ['/speaking-1.jpg']
+      images: ['/proyectos/SI1_Arroyo_car.png']
     }
   ]
 

@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import { 
-  FiCode, FiDatabase, FiServer, FiSmartphone, FiMonitor, FiZap,
-  FiGitBranch, FiCloud, FiShield, FiLayers, FiAward
+  FiCode, FiDatabase, FiGitBranch, FiAward
 } from 'react-icons/fi'
 
 const Skills = () => {

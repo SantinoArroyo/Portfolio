@@ -6,7 +6,7 @@ const About = () => {
     { icon: FiMapPin, label: 'Ubicación', value: 'Arroyito, Córdoba, Argentina' },
     { icon: FiMail, label: 'Email', value: 'josesantinoarroyo01@gmail.com' },
     { icon: FiPhone, label: 'Teléfono', value: '+54 3576 448401' },
-    { icon: FiCalendar, label: 'Edad', value: '20 años' },
+    { icon: FiCalendar, label: 'Edad', value: '21 años' },
   ]
 
   const experiences = [
