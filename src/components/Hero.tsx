@@ -109,7 +109,7 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-2xl md:text-3xl lg:text-4xl text-gray-300 font-light"
           >
-            Estudiante de Ing. en Sistemas & <span className="text-primary-400 font-medium">Data Analyst</span>
+            Estudiante de Ing. en Sistemas & <span className="text-primary-400 font-medium">Data Scientist</span>
           </motion.div>
 
           {/* Description */}

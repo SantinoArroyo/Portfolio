@@ -1,8 +1,17 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiGithub, FiExternalLink } from 'react-icons/fi';
+import { useState } from 'react';
 
 const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void }) => {
+  const [zoomImg, setZoomImg] = useState<string | null>(null);
   if (!project) return null;
+
+  // Función para convertir saltos de línea y negritas en HTML
+  function markdownToHtml(text: string) {
+    return text
+      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\n/g, '<br/>');
+  }
 
   return (
     <AnimatePresence>
@@ -11,7 +20,9 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-        onClick={onClose}
+        onClick={() => {
+          if (!zoomImg) onClose();
+        }}
       >
         <motion.div
           initial={{ y: 50, opacity: 0 }}
@@ -49,7 +60,7 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
             </div>
 
             <div className="prose prose-invert max-w-none text-gray-300 mb-8">
-              <p>{project.detailedDescription}</p>
+              <div dangerouslySetInnerHTML={{ __html: markdownToHtml(project.detailedDescription) }} />
             </div>
             
             {/* Image Gallery */}
@@ -58,7 +69,7 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
                 <h3 className="text-xl font-bold text-white mb-4">Galería</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {project.images.map((img: any, index: any) => (
-                    <motion.div key={index} whileHover={{ scale: 1.05 }} className="rounded-lg overflow-hidden">
+                    <motion.div key={index} whileHover={{ scale: 1.05 }} className="rounded-lg overflow-hidden cursor-pointer" onClick={() => setZoomImg(img)}>
                        <img src={img} alt={`${project.title} screenshot ${index + 1}`} className="w-full h-full object-cover"/>
                     </motion.div>
                   ))}
@@ -94,6 +105,28 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
             </div>
           </div>
         </motion.div>
+
+        {/* Modal de imagen ampliada */}
+        {zoomImg && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center"
+            onClick={(e) => {
+              e.stopPropagation();
+              setZoomImg(null);
+            }}
+          >
+            <img src={zoomImg} alt="Imagen ampliada" className="max-w-3xl max-h-[80vh] rounded-xl shadow-2xl border-4 border-white" />
+            <button
+              onClick={() => setZoomImg(null)}
+              className="absolute top-8 right-8 w-12 h-12 bg-black/60 rounded-full flex items-center justify-center text-white hover:bg-black/80 transition-colors text-2xl"
+            >
+              <FiX />
+            </button>
+          </motion.div>
+        )}
       </motion.div>
     </AnimatePresence>
   );

@@ -24,14 +24,18 @@ const Projects = () => {
     {
       id: 1,
       title: 'Investigación y Desarrollo en IA',
-      description: 'Participo en la investigación y desarrollo de soluciones innovadoras basadas en modelos de IA.',
-      detailedDescription: 'Como miembro del grupo GISAI (Grupo de Investigación en Señales, Sistemas e Inteligencia Artificial), mi rol se centra en la investigación y aplicación de algoritmos de Machine Learning y Deep Learning para resolver problemas complejos. Esto incluye análisis de datos, procesamiento de imágenes y desarrollo de modelos predictivos en diversos dominios, contribuyendo al avance de la tecnología y la ciencia de datos en la región.',
+      description: 'Como integrante de GISAI, desarrollé modelos de predicción (SARIMA y LSTM) para producción fotovoltaica en la UTN, aplicando IA y Deep Learning.',
+      detailedDescription: `Como integrante del grupo de investigación GISAI (Grupo de Investigación en Señales, Sistemas e Inteligencia Artificial), participé activamente en la realización del análisis estadístico de la serie temporal y de la creación y desarrollo de modelos de predicción para la producción fotovoltaica en la Universidad Tecnológica Nacional (UTN), Facultad Regional Córdoba.\n\n**Modelos desarrollados:**\n\n- **SARIMA (Seasonal AutoRegressive Integrated Moving Average):** Modelo estadístico para capturar estacionalidad y tendencias en los datos históricos de producción solar.\n- **LSTM (Long Short-Term Memory):** Red neuronal recurrente especializada en series temporales, utilizada para comparar su desempeño frente al modelo estadístico tradicional.\n\nAmbos modelos fueron evaluados utilizando métricas como **MAE** y **RMSE**, lo que permitió analizar sus ventajas y limitaciones en el contexto de la predicción energética. Esta experiencia me permitió profundizar en el análisis de datos, el procesamiento de series temporales y la aplicación de técnicas avanzadas de Machine Learning y Deep Learning para resolver desafíos reales en el ámbito de la energía renovable.`,
       category: 'ai',
       technologies: ['Python', 'Machine Learning', 'Análisis de Datos', 'Deep Learning'],
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
-      images: ['/proyectos/ia-investigacion.jpg', '/proyectos/ia-ml.jpg', '/proyectos/ia-analisis.jpg']
+      images: [
+        '/proyectos/ia-sarima-lstm-resultados.png',
+        '/proyectos/ia-boxplot-anual.png',
+        '/proyectos/ia-patron-intradiario.png'
+      ]
     },
     {
       id: 2,
@@ -133,9 +137,13 @@ const Projects = () => {
               >
                 {/* Project Image */}
                 <div className="relative h-48 bg-gradient-to-br from-primary-500/20 to-secondary-500/20">
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <FiCode className="w-16 h-16 text-primary-400/50" />
-                  </div>
+                  {project.images && project.images[0] ? (
+                    <img src={project.images[0]} alt={project.title} className="w-full h-full object-cover" />
+                  ) : (
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <FiCode className="w-16 h-16 text-primary-400/50" />
+                    </div>
+                  )}
                   {project.featured && (
                     <div className="absolute top-4 left-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-3 py-1 rounded-full text-sm font-medium">
                       Destacado
