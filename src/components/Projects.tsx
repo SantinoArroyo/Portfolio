@@ -1,33 +1,24 @@
-import { useState } from 'react'
+import { useState, useMemo, useCallback } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiExternalLink, FiGithub, FiCode, FiDatabase, FiGlobe, FiCpu, FiMic } from 'react-icons/fi'
 import ProjectModal from './ProjectModal'
-
-interface Project {
-  id: number;
-  title: string;
-  description: string;
-  detailedDescription: string;
-  category: string;
-  technologies: string[];
-  liveUrl: string;
-  githubUrl: string;
-  featured: boolean;
-  images: string[];
-}
+import { useTranslation } from 'react-i18next'
+import { Project, FilterOption } from '../types'
 
 const Projects = () => {
+  const { t } = useTranslation();
   const [activeFilter, setActiveFilter] = useState('all')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
-  const projects: Project[] = [
+  // Memoizar los proyectos para evitar re-renders innecesarios
+  const projects: Project[] = useMemo(() => [
     {
       id: 1,
-      title: 'Investigación y Desarrollo en IA',
-      description: 'Como integrante de GISAI, desarrollé modelos de predicción (SARIMA y LSTM) para producción fotovoltaica en la UTN, aplicando IA y Deep Learning.',
-      detailedDescription: `Como integrante del grupo de investigación GISAI (Grupo de Investigación en Señales, Sistemas e Inteligencia Artificial), participé activamente en la realización del análisis estadístico de la serie temporal y de la creación y desarrollo de modelos de predicción para la producción fotovoltaica en la Universidad Tecnológica Nacional (UTN), Facultad Regional Córdoba.\n\n**Modelos desarrollados:**\n\n- **SARIMA (Seasonal AutoRegressive Integrated Moving Average):** Modelo estadístico para capturar estacionalidad y tendencias en los datos históricos de producción solar.\n- **LSTM (Long Short-Term Memory):** Red neuronal recurrente especializada en series temporales, utilizada para comparar su desempeño frente al modelo estadístico tradicional.\n\nAmbos modelos fueron evaluados utilizando métricas como **MAE** y **RMSE**, lo que permitió analizar sus ventajas y limitaciones en el contexto de la predicción energética. Esta experiencia me permitió profundizar en el análisis de datos, el procesamiento de series temporales y la aplicación de técnicas avanzadas de Machine Learning y Deep Learning para resolver desafíos reales en el ámbito de la energía renovable.`,
+      title: t('projects.p1.title'),
+      description: t('projects.p1.description'),
+      detailedDescription: t('projects.p1.details'),
       category: 'ai',
-      technologies: ['Python', 'Machine Learning', 'Análisis de Datos', 'Deep Learning'],
+      technologies: [t('projects.p1.tech1'), t('projects.p1.tech2'), t('projects.p1.tech3'), t('projects.p1.tech4')],
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
@@ -39,11 +30,11 @@ const Projects = () => {
     },
     {
       id: 2,
-      title: 'Análisis y Visualización de Datos',
-      description: 'Desarrollo y gestión de bases de datos, y creación de dashboards interactivos.',
-      detailedDescription: 'En mi rol en DataStatLab, soy responsable de todo el ciclo de vida de los datos. Desde la recolección y limpieza inicial, pasando por el almacenamiento y la gestión en bases de datos SQL y NoSQL, hasta el procesamiento y la transformación para análisis. Finalmente, creo dashboards e informes interactivos utilizando herramientas como Power BI y Tableau para facilitar la toma de decisiones basada en datos.',
+      title: t('projects.p2.title'),
+      description: t('projects.p2.description'),
+      detailedDescription: t('projects.p2.details'),
       category: 'data',
-      technologies: ['Power BI', 'SQL', 'Bases de Datos', 'ETL'],
+      technologies: [t('projects.p2.tech1'), t('projects.p2.tech2'), t('projects.p2.tech3'), t('projects.p2.tech4')],
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
@@ -51,28 +42,35 @@ const Projects = () => {
     },
     {
       id: 3,
-      title: 'Disertante en Seminario Smart Grids & IA',
-      description: 'Presentación sobre la aplicación de la IA en redes eléctricas inteligentes.',
-      detailedDescription: 'Tuve el honor de ser invitado como disertante en el seminario interno sobre Redes Eléctricas Inteligentes (Smart Grids) e Inteligencia Artificial en la UTN - Facultad Regional Córdoba. Nuestra presentación se centró en cómo los algoritmos de IA pueden ser utilizados para realizar predicciones de producción de energía eléctrica. Junto al grupo GISAI, presentamos nuestros modelos de predicción (SARIMA, Holt-Winters y LSTM) para realizar 1 año de predicciones de producción fotovoltaica de una agrupación de paneles solares, compartiendo conocimientos y casos de estudio con profesionales del sector.',
+      title: t('projects.p3.title'),
+      description: t('projects.p3.description'),
+      detailedDescription: t('projects.p3.details'),
       category: 'speaking',
-      technologies: ['Inteligencia Artificial', 'Smart Grids', 'Oratoria'],
+      technologies: [t('projects.p3.tech1'), t('projects.p3.tech2'), t('projects.p3.tech3')],
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
       images: ['/proyectos/SI1_Arroyo_car.png']
     }
-  ]
+  ], [t])
 
-  const filters = [
-    { id: 'all', label: 'Todos', icon: FiGlobe },
-    { id: 'ai', label: 'IA', icon: FiCpu },
-    { id: 'data', label: 'Datos', icon: FiDatabase },
-    { id: 'speaking', label: 'Disertaciones', icon: FiMic }
-  ]
+  const filters: FilterOption[] = useMemo(() => [
+    { id: 'all', label: t('projects.all'), icon: FiGlobe },
+    { id: 'ai', label: t('projects.ai'), icon: FiCpu },
+    { id: 'data', label: t('projects.data'), icon: FiDatabase },
+    { id: 'speaking', label: t('projects.speaking'), icon: FiMic }
+  ], [t])
 
-  const filteredProjects = activeFilter === 'all' 
-    ? projects 
-    : projects.filter(project => project.category === activeFilter)
+  const filteredProjects = useMemo(() => 
+    activeFilter === 'all' 
+      ? projects 
+      : projects.filter(project => project.category === activeFilter),
+    [projects, activeFilter]
+  )
+
+  const handleFilterChange = useCallback((filterId: string) => {
+    setActiveFilter(filterId)
+  }, [])
 
   return (
     <section id="projects" className="py-20 relative">
@@ -85,10 +83,10 @@ const Projects = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Mis <span className="gradient-text">Proyectos</span>
+            {t('projects.title')}
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Una muestra de mi trabajo y las tecnologías que utilizo para crear soluciones innovadoras
+            {t('projects.subtitle')}
           </p>
         </motion.div>
 
@@ -105,7 +103,7 @@ const Projects = () => {
               key={filter.id}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => setActiveFilter(filter.id)}
+              onClick={() => handleFilterChange(filter.id)}
               className={`flex items-center space-x-2 px-6 py-3 rounded-lg font-medium transition-all duration-300 ${
                 activeFilter === filter.id
                   ? 'gradient-border text-white'
@@ -146,7 +144,7 @@ const Projects = () => {
                   )}
                   {project.featured && (
                     <div className="absolute top-4 left-4 bg-gradient-to-r from-primary-500 to-secondary-500 text-white px-3 py-1 rounded-full text-sm font-medium">
-                      Destacado
+                      {t('projects.featured')}
                     </div>
                   )}
                 </div>
@@ -174,7 +172,7 @@ const Projects = () => {
                       className="flex items-center space-x-2 text-primary-400"
                     >
                       <FiExternalLink className="w-4 h-4" />
-                      <span>Ver Detalles</span>
+                      <span>{t('projects.details')}</span>
                     </div>
                     {project.githubUrl !== '#' &&
                       <motion.a
@@ -187,7 +185,7 @@ const Projects = () => {
                         onClick={(e) => e.stopPropagation()}
                       >
                         <FiGithub className="w-4 h-4" />
-                        <span>Código</span>
+                        <span>{t('projects.code')}</span>
                       </motion.a>
                     }
                   </div>

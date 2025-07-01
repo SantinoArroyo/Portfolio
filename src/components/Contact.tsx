@@ -1,34 +1,40 @@
-import { useState } from 'react'
+import { useState, useCallback, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiGithub, FiLinkedin } from 'react-icons/fi'
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiGithub, FiLinkedin, FiAlertCircle } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
+import { FormData } from '../types'
+import { useEmailJS } from '../hooks/useEmailJS'
+import LoadingSpinner from './LoadingSpinner'
 
 const Contact = () => {
-  const [formData, setFormData] = useState({
+  const { t } = useTranslation();
+  const { sendEmail, isLoading, error, resetError } = useEmailJS();
+  const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
     subject: '',
     message: ''
   })
-  const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
 
   const contactInfo = [
     {
       icon: FiMail,
-      title: 'Email',
+      title: t('contact.email'),
       value: 'josesantinoarroyo01@gmail.com',
       href: 'mailto:josesantinoarroyo01@gmail.com'
     },
     {
       icon: FiPhone,
-      title: 'Teléfono',
+      title: t('contact.phone'),
       value: '+54 3576 448401',
       href: 'tel:+543576448401'
     },
     {
       icon: FiMapPin,
-      title: 'Ubicación',
-      value: 'Arroyito, Córdoba, Argentina',
+      title: t('contact.location'),
+      value: t('contact.locationValue'),
       href: '#'
     }
   ]
@@ -38,29 +44,33 @@ const Contact = () => {
     { label: 'LinkedIn', href: 'https://linkedin.com/in/santino-arroyo-628090239', icon: FiLinkedin },
   ]
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
     e.preventDefault()
-    setIsSubmitting(true)
+    resetError()
     
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 2000))
+    const response = await sendEmail(formData)
     
-    setIsSubmitting(false)
-    setIsSubmitted(true)
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false)
+    if (response.success) {
+      setIsSubmitted(true)
+      setSubmitMessage(response.message)
       setFormData({ name: '', email: '', subject: '', message: '' })
-    }, 3000)
-  }
+      
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setSubmitMessage('')
+      }, 5000)
+    } else {
+      setSubmitMessage(response.message)
+    }
+  }, [formData, sendEmail, resetError])
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({
-      ...formData,
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData(prev => ({
+      ...prev,
       [e.target.name]: e.target.value
-    })
-  }
+    }))
+  }, [])
 
   return (
     <section id="contact" className="py-20 relative">
@@ -73,10 +83,10 @@ const Contact = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            <span className="gradient-text">Contacto</span>
+            <span className="gradient-text">{t('contact.title')}</span>
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            ¿Tienes un proyecto en mente? ¡Me encantaría escuchar sobre él!
+            {t('contact.subtitle')}
           </p>
         </motion.div>
 
@@ -90,11 +100,9 @@ const Contact = () => {
             className="space-y-8"
           >
             <div>
-              <h3 className="text-2xl font-bold text-white mb-6">¡Hablemos!</h3>
+              <h3 className="text-2xl font-bold text-white mb-6">{t('contact.letsTalk')}</h3>
               <p className="text-gray-300 leading-relaxed mb-8">
-                Estoy siempre interesado en nuevos proyectos y oportunidades. 
-                Si tienes una idea o proyecto en mente, no dudes en contactarme. 
-                Responderé lo antes posible.
+                {t('contact.intro')}
               </p>
             </div>
 
@@ -123,7 +131,7 @@ const Contact = () => {
 
             {/* Social Links */}
             <div className="pt-8">
-              <h4 className="text-lg font-bold text-white mb-4">Sígueme en redes</h4>
+              <h4 className="text-lg font-bold text-white mb-4">{t('contact.follow')}</h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
                   <motion.a
@@ -154,7 +162,7 @@ const Contact = () => {
             viewport={{ once: true }}
             className="glass rounded-2xl p-8"
           >
-            <h3 className="text-2xl font-bold text-white mb-6">Envíame un mensaje</h3>
+            <h3 className="text-2xl font-bold text-white mb-6">{t('contact.formTitle')}</h3>
             
             {isSubmitted ? (
               <motion.div
@@ -165,14 +173,35 @@ const Contact = () => {
                 <div className="w-16 h-16 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-4">
                   <FiCheck className="w-8 h-8 text-white" />
                 </div>
-                <h4 className="text-xl font-bold text-white mb-2">¡Mensaje enviado!</h4>
-                <p className="text-gray-400">Gracias por contactarme. Te responderé pronto.</p>
+                <h4 className="text-xl font-bold text-white mb-2">{t('contact.sent')}</h4>
+                <p className="text-gray-400">{submitMessage}</p>
+              </motion.div>
+            ) : error ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-12"
+              >
+                <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <FiAlertCircle className="w-8 h-8 text-white" />
+                </div>
+                <h4 className="text-xl font-bold text-white mb-2">Error</h4>
+                <p className="text-gray-400">{submitMessage}</p>
+                <button
+                  onClick={() => {
+                    resetError()
+                    setSubmitMessage('')
+                  }}
+                  className="mt-4 px-6 py-2 bg-primary-500 text-white rounded-lg hover:bg-primary-600 transition-colors"
+                >
+                  Intentar de nuevo
+                </button>
               </motion.div>
             ) : (
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-6">
                   <div>
-                    <label htmlFor="name" className="block text-gray-300 mb-2">Nombre</label>
+                    <label htmlFor="name" className="block text-gray-300 mb-2">{t('contact.name')}</label>
                     <input
                       type="text"
                       id="name"
@@ -181,11 +210,11 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-300"
-                      placeholder="Tu nombre"
+                      placeholder={t('contact.placeholderName')}
                     />
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-gray-300 mb-2">Email</label>
+                    <label htmlFor="email" className="block text-gray-300 mb-2">{t('contact.email')}</label>
                     <input
                       type="email"
                       id="email"
@@ -194,13 +223,13 @@ const Contact = () => {
                       onChange={handleChange}
                       required
                       className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-300"
-                      placeholder="tu@email.com"
+                      placeholder={t('contact.placeholderEmail')}
                     />
                   </div>
                 </div>
                 
                 <div>
-                  <label htmlFor="subject" className="block text-gray-300 mb-2">Asunto</label>
+                  <label htmlFor="subject" className="block text-gray-300 mb-2">{t('contact.subject')}</label>
                   <input
                     type="text"
                     id="subject"
@@ -209,12 +238,12 @@ const Contact = () => {
                     onChange={handleChange}
                     required
                     className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-300"
-                    placeholder="¿En qué puedo ayudarte?"
+                    placeholder={t('contact.placeholderSubject')}
                   />
                 </div>
                 
                 <div>
-                  <label htmlFor="message" className="block text-gray-300 mb-2">Mensaje</label>
+                  <label htmlFor="message" className="block text-gray-300 mb-2">{t('contact.message')}</label>
                   <textarea
                     id="message"
                     name="message"
@@ -223,26 +252,26 @@ const Contact = () => {
                     required
                     rows={5}
                     className="w-full px-4 py-3 bg-gray-800/50 border border-gray-600 rounded-lg text-white placeholder-gray-400 focus:outline-none focus:border-primary-500 transition-colors duration-300 resize-none"
-                    placeholder="Cuéntame sobre tu proyecto..."
+                    placeholder={t('contact.placeholderMessage')}
                   />
                 </div>
                 
                 <motion.button
                   type="submit"
-                  disabled={isSubmitting}
+                  disabled={isLoading}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="w-full gradient-border py-4 text-white font-medium rounded-lg flex items-center justify-center space-x-2 hover:shadow-lg transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isSubmitting ? (
+                  {isLoading ? (
                     <>
-                      <div className="w-5 h-5 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                      <span>Enviando...</span>
+                      <LoadingSpinner size="sm" color="white" />
+                      <span>{t('contact.sending')}</span>
                     </>
                   ) : (
                     <>
                       <FiSend className="w-5 h-5" />
-                      <span>Enviar Mensaje</span>
+                      <span>{t('contact.send')}</span>
                     </>
                   )}
                 </motion.button>

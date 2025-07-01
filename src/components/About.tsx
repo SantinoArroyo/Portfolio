@@ -1,32 +1,35 @@
 import { motion } from 'framer-motion'
 import { FiUser, FiMapPin, FiMail, FiPhone, FiCalendar } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
 const About = () => {
+  const { t } = useTranslation();
+
   const personalInfo = [
-    { icon: FiMapPin, label: 'Ubicación', value: 'Arroyito, Córdoba, Argentina' },
-    { icon: FiMail, label: 'Email', value: 'josesantinoarroyo01@gmail.com' },
-    { icon: FiPhone, label: 'Teléfono', value: '+54 3576 448401' },
-    { icon: FiCalendar, label: 'Edad', value: '21 años' },
+    { icon: FiMapPin, label: t('about.location'), value: t('about.locationValue') },
+    { icon: FiMail, label: t('about.email'), value: 'josesantinoarroyo01@gmail.com' },
+    { icon: FiPhone, label: t('about.phone'), value: '+54 3576 448401' },
+    { icon: FiCalendar, label: t('about.age'), value: t('about.ageValue') },
   ]
 
   const experiences = [
     {
-      year: '2024 - Actualidad',
-      title: 'Disertante en "Cursos para la SECU"',
-      company: 'Universidad Tecnológica Nacional',
-      description: 'Disertante en el Laboratorio de Ingeniería en Sistemas.'
+      year: t('about.exp1.year'),
+      title: t('about.exp1.title'),
+      company: t('about.exp1.company'),
+      description: t('about.exp1.description')
     },
     {
-      year: '2024 - Actualidad',
-      title: 'Miembro del Laboratorio de Estadística',
-      company: 'UTN FRSFCO - DataStatLab',
-      description: 'Gestión de bases de datos, procesamiento de información y visualización con herramientas como Power BI.'
+      year: t('about.exp2.year'),
+      title: t('about.exp2.title'),
+      company: t('about.exp2.company'),
+      description: t('about.exp2.description')
     },
     {
-      year: '2022 - Actualidad',
-      title: 'Investigador y Docente en IA',
-      company: 'UTN / Grupo GISAI',
-      description: 'Como Docente Investigador (Cat. G) y miembro del grupo GISAI, participo en proyectos de I+D aplicando IA y Machine Learning, y contribuyo a la formación en tecnologías emergentes.'
+      year: t('about.exp3.year'),
+      title: t('about.exp3.title'),
+      company: t('about.exp3.company'),
+      description: t('about.exp3.description')
     }
   ]
 
@@ -41,10 +44,10 @@ const About = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Sobre <span className="gradient-text">Mí</span>
+            {t('about.title')}
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Apasionado desarrollador con experiencia en crear soluciones digitales innovadoras
+            {t('about.subtitle')}
           </p>
         </motion.div>
 
@@ -60,7 +63,7 @@ const About = () => {
             <div className="glass rounded-2xl p-8">
               <h3 className="text-2xl font-bold text-white mb-6 flex items-center">
                 <FiUser className="w-6 h-6 mr-3 text-primary-400" />
-                Información Personal
+                {t('about.personalInfo')}
               </h3>
               <div className="space-y-4">
                 {personalInfo.map((info, index) => (
@@ -85,13 +88,10 @@ const About = () => {
             </div>
 
             <div className="glass rounded-2xl p-8">
-              <h3 className="text-2xl font-bold text-white mb-6">Mi Historia</h3>
-              <p className="text-gray-300 leading-relaxed mb-4">
-                Comencé mi carrera en la Universidad Tecnológica Nacional, donde mi interés por la inteligencia artificial y el análisis de datos me llevó a unirme al grupo de investigación GISAI y al laboratorio DataStatLab.
-              </p>
-              <p className="text-gray-300 leading-relaxed">
-                Mi objetivo es aplicar mis conocimientos para desarrollar soluciones tecnológicas innovadoras y eficientes, combinando el desarrollo de software con las últimas tendencias en IA.
-              </p>
+              <h3 className="text-2xl font-bold text-white mb-6">{t('about.historyTitle')}</h3>
+              <p className="text-gray-300 leading-relaxed mb-4">{t('about.history1')}</p>
+              <p className="text-gray-300 leading-relaxed mb-4">{t('about.history2')}</p>
+              <p className="text-gray-300 leading-relaxed">{t('about.history3')}</p>
             </div>
           </motion.div>
 
@@ -103,7 +103,7 @@ const About = () => {
             viewport={{ once: true }}
             className="space-y-6"
           >
-            <h3 className="text-2xl font-bold text-white mb-8">Mi Trayectoria</h3>
+            <h3 className="text-2xl font-bold text-white mb-8">{t('about.experienceTitle')}</h3>
             {experiences.map((exp, index) => (
               <motion.div
                 key={index}

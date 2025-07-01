@@ -1,9 +1,11 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { FiX, FiGithub, FiExternalLink } from 'react-icons/fi';
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 
 const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void }) => {
   const [zoomImg, setZoomImg] = useState<string | null>(null);
+  const { t } = useTranslation();
   if (!project) return null;
 
   // Función para convertir saltos de línea y negritas en HTML
@@ -66,7 +68,7 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
             {/* Image Gallery */}
             {project.images && project.images.length > 1 && (
               <div className="mb-8">
-                <h3 className="text-xl font-bold text-white mb-4">Galería</h3>
+                <h3 className="text-xl font-bold text-white mb-4">{t('projects.gallery')}</h3>
                 <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                   {project.images.map((img: any, index: any) => (
                     <motion.div key={index} whileHover={{ scale: 1.05 }} className="rounded-lg overflow-hidden cursor-pointer" onClick={() => setZoomImg(img)}>
@@ -87,7 +89,7 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
                   className="flex items-center space-x-2 text-primary-400 hover:text-primary-300 transition-colors duration-200"
                 >
                   <FiExternalLink />
-                  <span>Ver Demo</span>
+                  <span>{t('projects.demo')}</span>
                 </motion.a>
               )}
               {project.githubUrl && project.githubUrl !== '#' && (
@@ -99,7 +101,7 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
                   className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
                 >
                   <FiGithub />
-                  <span>Ver Código</span>
+                  <span>{t('projects.code')}</span>
                 </motion.a>
               )}
             </div>

@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiMail } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const { t, i18n } = useTranslation()
+  const [langMenu, setLangMenu] = useState(false)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -14,12 +17,17 @@ const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
+  const changeLanguage = (lng: string) => {
+    i18n.changeLanguage(lng)
+    setLangMenu(false)
+  }
+
   const navItems = [
-    { name: 'Inicio', href: '#home', icon: FiHome },
-    { name: 'Sobre Mí', href: '#about', icon: FiUser },
-    { name: 'Habilidades', href: '#skills', icon: FiCode },
-    { name: 'Proyectos', href: '#projects', icon: FiBriefcase },
-    { name: 'Contacto', href: '#contact', icon: FiMail },
+    { name: t('navbar.home'), href: '#home', icon: FiHome },
+    { name: t('navbar.about'), href: '#about', icon: FiUser },
+    { name: t('navbar.skills'), href: '#skills', icon: FiCode },
+    { name: t('navbar.projects'), href: '#projects', icon: FiBriefcase },
+    { name: t('navbar.contact'), href: '#contact', icon: FiMail },
   ]
 
   const scrollToSection = (href: string) => {
@@ -69,6 +77,34 @@ const Navbar = () => {
                 <span>{item.name}</span>
               </motion.button>
             ))}
+            {/* Language Dropdown */}
+            <div className="relative">
+              <button
+                onClick={() => setLangMenu(!langMenu)}
+                aria-label="Cambiar idioma"
+                aria-expanded={langMenu}
+                aria-haspopup="true"
+                className="ml-4 px-3 py-2 rounded-lg bg-gray-800 text-white hover:bg-primary-400 hover:text-white transition-colors duration-200"
+              >
+                {i18n.language === 'es' ? 'ES' : 'EN'} ▼
+              </button>
+              {langMenu && (
+                <div className="absolute right-0 mt-2 w-24 bg-white rounded-lg shadow-lg z-50">
+                  <button
+                    onClick={() => changeLanguage('es')}
+                    className="block w-full px-4 py-2 text-left hover:bg-primary-100 text-gray-800"
+                  >
+                    Español
+                  </button>
+                  <button
+                    onClick={() => changeLanguage('en')}
+                    className="block w-full px-4 py-2 text-left hover:bg-primary-100 text-gray-800"
+                  >
+                    English
+                  </button>
+                </div>
+              )}
+            </div>
           </div>
 
           {/* Mobile menu button */}

@@ -2,26 +2,29 @@ import { motion } from 'framer-motion'
 import { 
   FiCode, FiDatabase, FiGitBranch, FiAward
 } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
 const Skills = () => {
+  const { t } = useTranslation();
+
   const skillCategories = [
     {
       title: 'Data & Inteligencia Artificial',
       icon: FiDatabase,
       skills: [
-        { name: 'Análisis de Datos', level: 90, color: 'from-blue-500 to-cyan-500' },
-        { name: 'Machine Learning', level: 80, color: 'from-purple-500 to-pink-500' },
-        { name: 'Power BI & Tableau', level: 85, color: 'from-yellow-400 to-orange-500' },
-        { name: 'Modelos Predictivos (Series de Tiempo)', level: 75, color: 'from-indigo-500 to-purple-500' },
-        { name: 'Prompt Engineering', level: 90, color: 'from-green-400 to-blue-500' },
+        { name: t('skills.teamwork'), level: 80, color: 'from-blue-500 to-cyan-500' },
+        { name: 'Machine Learning', level: 75, color: 'from-purple-500 to-pink-500' },
+        { name: 'Power BI & Tableau', level: 75, color: 'from-yellow-400 to-orange-500' },
+        { name: t('skills.predictiveModels'), level: 70, color: 'from-indigo-500 to-purple-500' },
+        { name: 'Prompt Engineering', level: 85, color: 'from-green-400 to-blue-500' },
       ]
     },
     {
       title: 'Lenguajes & Bases de Datos',
       icon: FiCode,
       skills: [
-        { name: 'Python', level: 90, color: 'from-blue-500 to-yellow-500' },
-        { name: 'SQL', level: 85, color: 'from-cyan-500 to-blue-600' },
+        { name: 'Python', level: 80, color: 'from-blue-500 to-yellow-500' },
+        { name: 'SQL', level: 80, color: 'from-cyan-500 to-blue-600' },
         { name: 'C', level: 70, color: 'from-gray-500 to-gray-600' },
         { name: 'R', level: 60, color: 'from-blue-400 to-blue-500' },
       ]
@@ -30,9 +33,9 @@ const Skills = () => {
       title: 'Herramientas y Desarrollo',
       icon: FiGitBranch,
       skills: [
-        { name: 'Git & GitHub', level: 85, color: 'from-orange-500 to-red-500' },
-        { name: 'Algoritmos y Estructuras de Datos', level: 80, color: 'from-green-500 to-teal-500' },
-        { name: 'Microsoft Office', level: 95, color: 'from-blue-600 to-blue-800' },
+        { name: 'Git & GitHub', level: 80, color: 'from-orange-500 to-red-500' },
+        { name: t('skills.algorithms'), level: 90, color: 'from-green-500 to-teal-500' },
+        { name: 'Microsoft Office', level: 85, color: 'from-blue-600 to-blue-800' },
       ]
     },
     {
@@ -58,10 +61,10 @@ const Skills = () => {
           className="text-center mb-16"
         >
           <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            Mis <span className="gradient-text">Habilidades</span>
+            {t('skills.title')}
           </h2>
           <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Un vistazo a las tecnologías, herramientas y conocimientos que manejo.
+            {t('skills.subtitle')}
           </p>
         </motion.div>
 
@@ -120,13 +123,13 @@ const Skills = () => {
           className="mt-16"
         >
           <h3 className="text-3xl font-bold text-white text-center mb-12">
-            Habilidades <span className="gradient-text">Adicionales</span>
+            {t('skills.additional')}
           </h3>
           
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6">
             {[
-              'Trabajo en Equipo', 'Resolución de Problemas', 'Proactividad', 'Adaptabilidad', 
-              'Pensamiento Lógico', 'Conocimientos Contables'
+              t('skills.teamwork'), t('skills.problemSolving'), t('skills.proactivity'), t('skills.adaptability'),
+              t('skills.logicalThinking'), t('skills.accountingKnowledge')
             ].map((tech, index) => (
               <motion.div
                 key={tech}

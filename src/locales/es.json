@@ -1,0 +1,136 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "¡Hola! Soy",
+    "title": "Estudiante de Ing. en Sistemas & Data Scientist",
+    "description": "Estudiante avanzado de Ingeniería en Sistemas, apasionado por la Inteligencia Artificial y la ciencia de datos. Miembro del grupo de investigación GISAI y del laboratorio DataStatLab, donde aplico mis conocimientos en desarrollo y visualización de datos.",
+    "viewProjects": "Ver Proyectos",
+    "downloadCV": "Descargar CV"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "subtitle": "Estudiante de ingeniería con pasión por la inteligencia artificial, el análisis de datos y el desarrollo de soluciones innovadoras basadas en datos.",
+    "personalInfo": "Información Personal",
+    "historyTitle": "Mi Historia",
+    "history1": "Soy estudiante de la UTN con un fuerte interés en inteligencia artificial y análisis de datos. Cuento con experiencia en análisis de datos y desarrollo de modelos predictivos, combinando herramientas estadísticas y programación para extraer información valiosa de grandes volúmenes de datos.",
+    "history2": "Durante mi trayectoria académica y profesional, he trabajado con Python y sus principales librerías para análisis de datos y modelos de aprendizaje automático (Pandas, NumPy, Matplotlib, Scikit-learn), así como con bases de datos SQL y visualización en Power BI. Además, tengo experiencia en modelos de análisis de series temporales como SARIMA y Holt-Winters, así como en Deep Learning, aplicando redes neuronales LSTM para la predicción de datos secuenciales.",
+    "history3": "Me motiva la investigación y el desarrollo de nuevas tecnologías en inteligencia artificial, siempre buscando optimizar procesos y descubrir soluciones innovadoras.",
+    "experienceTitle": "Mi Trayectoria",
+    "location": "Ubicación",
+    "locationValue": "Arroyito, Córdoba, Argentina",
+    "email": "Email",
+    "phone": "Teléfono",
+    "age": "Edad",
+    "ageValue": "21 años",
+    "exp1": {
+      "year": "2024 - Actualidad",
+      "title": "Disertante en 'Cursos para la SECU'",
+      "company": "Universidad Tecnológica Nacional",
+      "description": "Disertante en el Laboratorio de Ingeniería en Sistemas."
+    },
+    "exp2": {
+      "year": "2024 - Actualidad",
+      "title": "Miembro del Laboratorio de Estadística",
+      "company": "UTN FRSFCO - DataStatLab",
+      "description": "Gestión de bases de datos, procesamiento de información y visualización con herramientas como Power BI."
+    },
+    "exp3": {
+      "year": "2022 - Actualidad",
+      "title": "Investigador y Docente en IA",
+      "company": "UTN / Grupo GISAI",
+      "description": "Como Docente Investigador (Cat. G) y miembro del grupo GISAI, participo en proyectos de I+D aplicando IA y Machine Learning, y contribuyo a la formación en tecnologías emergentes."
+    }
+  },
+  "skills": {
+    "title": "Mis Habilidades",
+    "subtitle": "Un vistazo a las tecnologías, herramientas y conocimientos que manejo.",
+    "additional": "Habilidades Adicionales",
+    "teamwork": "Trabajo en Equipo",
+    "problemSolving": "Resolución de Problemas",
+    "proactivity": "Proactividad",
+    "adaptability": "Adaptabilidad",
+    "logicalThinking": "Pensamiento Lógico",
+    "accountingKnowledge": "Conocimientos Contables",
+    "predictiveModels": "Modelos Predictivos (Series de Tiempo)",
+    "algorithms": "Algoritmos y Estructuras de Datos"
+  },
+  "projects": {
+    "title": "Mis Proyectos",
+    "subtitle": "Una muestra de mi trabajo y las tecnologías que utilizo para crear soluciones innovadoras",
+    "all": "Todos",
+    "ai": "IA",
+    "data": "Datos",
+    "speaking": "Disertaciones",
+    "featured": "Destacado",
+    "details": "Ver Detalles",
+    "code": "Código",
+    "gallery": "Galería",
+    "demo": "Ver Demo",
+    "p1": {
+      "title": "Investigación y Desarrollo en Series Temporales",
+      "description": "Como integrante de GISAI, desarrollé modelos de predicción (SARIMA y LSTM) para analizar el comportamiento de la producción fotovoltaica en la UTN, aplicando IA y Deep Learning.",
+      "details": "Como integrante del grupo de investigación GISAI (Grupo de Investigación en Señales, Sistemas e Inteligencia Artificial), participé activamente en la realización del análisis estadístico de la serie temporal y de la creación y desarrollo de modelos de predicción para la producción fotovoltaica en la Universidad Tecnológica Nacional (UTN), Facultad Regional Córdoba.\n\nModelos desarrollados:\n- SARIMA (Seasonal AutoRegressive Integrated Moving Average): Modelo estadístico para capturar estacionalidad y tendencias en los datos históricos de producción solar.\n- LSTM (Long Short-Term Memory): Red neuronal recurrente especializada en series temporales, utilizada para comparar su desempeño frente al modelo estadístico tradicional.\n\nAmbos modelos fueron evaluados utilizando métricas como MAE y RMSE, lo que permitió analizar sus ventajas y limitaciones en el contexto de la predicción energética. Esta experiencia me permitió profundizar en el análisis de datos, el procesamiento de series temporales y la aplicación de técnicas avanzadas de Machine Learning y Deep Learning para resolver desafíos reales en el ámbito de la energía renovable.",
+      "tech1": "Python",
+      "tech2": "Machine Learning",
+      "tech3": "Análisis de Datos",
+      "tech4": "Deep Learning"
+    },
+    "p2": {
+      "title": "Análisis y Visualización de Datos",
+      "description": "Desarrollo y gestión de bases de datos, y creación de dashboards interactivos.",
+      "details": "En mi rol en DataStatLab, soy responsable de todo el ciclo de vida de los datos. Desde la recolección y limpieza inicial, pasando por el almacenamiento y la gestión en bases de datos SQL y NoSQL, hasta el procesamiento y la transformación para análisis. Finalmente, creo dashboards e informes interactivos utilizando herramientas como Power BI y Tableau para facilitar la toma de decisiones basada en datos.",
+      "tech1": "Power BI",
+      "tech2": "SQL",
+      "tech3": "Bases de Datos",
+      "tech4": "ETL"
+    },
+    "p3": {
+      "title": "Disertante en Seminario Smart Grids & IA",
+      "description": "Presentación sobre la aplicación de la IA en redes eléctricas inteligentes.",
+      "details": "Con GISAI, tuvimos el honor de ser invitados como disertantes en el seminario interno sobre Redes Eléctricas Inteligentes (Smart Grids) e Inteligencia Artificial en la UTN - Facultad Regional Córdoba. Nuestra presentación se centró en cómo los algoritmos de IA pueden ser utilizados para realizar predicciones de producción de energía eléctrica. Junto al grupo, presentamos nuestros modelos de predicción (SARIMA, Holt-Winters y LSTM) para realizar 1 año de predicciones de producción fotovoltaica de una agrupación de paneles solares, compartiendo conocimientos y casos de estudio con profesionales del sector.",
+      "tech1": "Inteligencia Artificial",
+      "tech2": "Smart Grids",
+      "tech3": "Oratoria"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes un proyecto en mente? ¡Me encantaría escuchar sobre él!",
+    "letsTalk": "¡Hablemos!",
+    "formTitle": "Envíame un mensaje",
+    "name": "Nombre",
+    "email": "Email",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "sending": "Enviando...",
+    "sent": "¡Mensaje enviado!",
+    "thanks": "Gracias por contactarme. Te responderé pronto.",
+    "follow": "Sígueme en redes",
+    "phone": "Teléfono",
+    "location": "Ubicación",
+    "locationValue": "Arroyito, Córdoba, Argentina",
+    "intro": "Estoy siempre interesado en nuevos proyectos y oportunidades. Si tienes una idea o proyecto en mente, no dudes en contactarme. Responderé lo antes posible.",
+    "placeholderName": "Tu nombre",
+    "placeholderEmail": "tu@email.com",
+    "placeholderSubject": "¿En qué puedo ayudarte?",
+    "placeholderMessage": "Cuéntame sobre tu proyecto..."
+  },
+  "footer": {
+    "student": "Estudiante de Ingeniería en Sistemas y Científico de Datos, apasionado por la Inteligencia Artificial y el desarrollo de soluciones tecnológicas innovadoras.",
+    "quickLinks": "Enlaces Rápidos",
+    "contact": "Contacto",
+    "email": "Email:",
+    "phone": "Teléfono:",
+    "location": "Ubicación:",
+    "rights": "Todos los derechos reservados.",
+    "madeWith": "Hecho con",
+    "inArgentina": "en Argentina"
+  }
+} 

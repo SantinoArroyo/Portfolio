@@ -1,7 +1,10 @@
 import { motion } from 'framer-motion'
 import { FiArrowDown, FiGithub, FiLinkedin, FiDownload } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   const scrollToAbout = () => {
     const element = document.querySelector('#about')
     if (element) {
@@ -89,7 +92,7 @@ const Hero = () => {
             transition={{ delay: 0.2 }}
             className="text-primary-400 font-medium"
           >
-            ¡Hola! Soy
+            {t('hero.greeting')}
           </motion.div>
 
           {/* Name */}
@@ -109,7 +112,7 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="text-2xl md:text-3xl lg:text-4xl text-gray-300 font-light"
           >
-            Estudiante de Ing. en Sistemas & <span className="text-primary-400 font-medium">Data Scientist</span>
+            {t('hero.title')}
           </motion.div>
 
           {/* Description */}
@@ -119,7 +122,7 @@ const Hero = () => {
             transition={{ delay: 0.8, duration: 0.8 }}
             className="text-lg md:text-xl text-gray-400 max-w-3xl mx-auto leading-relaxed"
           >
-            Estudiante avanzado de Ingeniería en Sistemas, apasionado por la Inteligencia Artificial y el análisis de datos. Miembro del grupo de investigación GISAI y del laboratorio DataStatLab, donde aplico mis conocimientos en desarrollo y visualización de datos.
+            {t('hero.description')}
           </motion.p>
 
           {/* CTA Buttons */}
@@ -135,7 +138,7 @@ const Hero = () => {
               onClick={scrollToProjects}
               className="gradient-border px-8 py-4 text-white font-medium rounded-lg flex items-center space-x-2 hover:shadow-lg transition-all duration-300"
             >
-              <span>Ver Proyectos</span>
+              <span>{t('hero.viewProjects')}</span>
               <FiArrowDown className="w-5 h-5" />
             </motion.button>
             
@@ -146,7 +149,7 @@ const Hero = () => {
                 className="glass px-8 py-4 text-white font-medium rounded-lg flex items-center space-x-2 hover:bg-white/20 transition-all duration-300"
               >
                 <FiDownload className="w-5 h-5" />
-                <span>Descargar CV</span>
+                <span>{t('hero.downloadCV')}</span>
               </motion.button>
             </a>
           </motion.div>

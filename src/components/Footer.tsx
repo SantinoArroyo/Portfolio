@@ -1,7 +1,9 @@
 import { motion } from 'framer-motion'
 import { FiGithub, FiLinkedin, FiMail, FiHeart } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
 
 const Footer = () => {
+  const { t } = useTranslation();
   const currentYear = new Date().getFullYear()
   
   const socialLinks = [
@@ -11,11 +13,11 @@ const Footer = () => {
   ]
 
   const quickLinks = [
-    { name: 'Inicio', href: '#home' },
-    { name: 'Sobre Mí', href: '#about' },
-    { name: 'Habilidades', href: '#skills' },
-    { name: 'Proyectos', href: '#projects' },
-    { name: 'Contacto', href: '#contact' },
+    { name: t('navbar.home'), href: '#home' },
+    { name: t('navbar.about'), href: '#about' },
+    { name: t('navbar.skills'), href: '#skills' },
+    { name: t('navbar.projects'), href: '#projects' },
+    { name: t('navbar.contact'), href: '#contact' },
   ]
 
   const scrollToSection = (href: string) => {
@@ -43,7 +45,7 @@ const Footer = () => {
               <span className="text-2xl font-bold gradient-text">Santino</span>
             </div>
             <p className="text-gray-400 leading-relaxed mb-6 max-w-md">
-              Estudiante de Ingeniería en Sistemas y Analista de Datos, apasionado por la Inteligencia Artificial y el desarrollo de soluciones tecnológicas innovadoras.
+              {t('footer.student')}
             </p>
             <div className="flex space-x-4">
               {socialLinks.map((social, index) => (
@@ -102,15 +104,15 @@ const Footer = () => {
             <h3 className="text-lg font-bold text-white mb-4">Contacto</h3>
             <div className="space-y-3">
               <p className="text-gray-400">
-                <span className="text-primary-400">Email:</span><br />
+                <span className="text-primary-400">{t('footer.email')}</span><br />
                 josesantinoarroyo01@gmail.com
               </p>
               <p className="text-gray-400">
-                <span className="text-primary-400">Teléfono:</span><br />
+                <span className="text-primary-400">{t('footer.phone')}</span><br />
                 +54 3576 448401
               </p>
               <p className="text-gray-400">
-                <span className="text-primary-400">Ubicación:</span><br />
+                <span className="text-primary-400">{t('footer.location')}</span><br />
                 Arroyito, Córdoba, Argentina
               </p>
             </div>
@@ -133,12 +135,12 @@ const Footer = () => {
           className="flex flex-col md:flex-row justify-between items-center text-center md:text-left"
         >
           <p className="text-gray-400 mb-4 md:mb-0">
-            © {currentYear} Santino Arroyo. Todos los derechos reservados.
+            © {currentYear} Santino Arroyo. {t('footer.rights')}
           </p>
           <p className="text-gray-400 flex items-center space-x-1">
-            <span>Hecho con</span>
+            <span>{t('footer.madeWith')}</span>
             <FiHeart className="w-4 h-4 text-red-500 animate-pulse" />
-            <span>en Argentina</span>
+            <span>{t('footer.inArgentina')}</span>
           </p>
         </motion.div>
       </div>

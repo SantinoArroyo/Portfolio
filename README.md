@@ -1,6 +1,19 @@
-# 🚀 Portfolio Personal - José
+# 🚀 Portfolio Personal - Santino Arroyo
 
 Un portfolio personal moderno y elegante construido con React, TypeScript y Tailwind CSS. Diseñado para mostrar proyectos, habilidades y experiencia profesional de manera atractiva.
+
+## 🎯 Características Destacadas
+
+- 🎨 **Diseño Moderno**: Interfaz elegante con paleta de colores azul y blanco
+- 📱 **Responsive**: Optimizado para todos los dispositivos
+- ✨ **Animaciones**: Transiciones suaves con Framer Motion
+- 🌊 **Glassmorphism**: Efectos de cristal modernos
+- 🎯 **Navegación Suave**: Scroll automático entre secciones
+- 📧 **Formulario de Contacto**: Funcionalidad de contacto integrada
+- 🚀 **Performance**: Optimizado para velocidad y SEO
+- 🌍 **Internacionalización**: Soporte para español e inglés
+- ♿ **Accesibilidad**: Cumple con estándares WCAG
+- 🔧 **TypeScript**: Tipado estático para mayor seguridad
 
 ## ✨ Características
 
@@ -152,13 +165,15 @@ Las animaciones están configuradas en `tailwind.config.js` y se pueden personal
 
 ## 🔧 Configuración Adicional
 
-### EmailJS (Opcional)
+### EmailJS (Recomendado)
 Para hacer funcional el formulario de contacto:
 
-1. Regístrate en [EmailJS](https://www.emailjs.com/)
-2. Configura tu servicio de email
-3. Obtén las credenciales necesarias
-4. Configura las variables de entorno
+1. Sigue las instrucciones detalladas en [`EMAILJS_SETUP.md`](./EMAILJS_SETUP.md)
+2. Configura tu servicio de email en EmailJS
+3. Crea una plantilla de email personalizada
+4. Actualiza las credenciales en `src/config/emailjs.ts`
+
+**Nota:** El plan gratuito de EmailJS permite 200 emails por mes.
 
 ### Google Analytics
 Para agregar analytics:
