@@ -1,15 +1,18 @@
 import { motion } from 'framer-motion'
 import { FiArrowDown, FiGithub, FiLinkedin, FiDownload } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
+import { useAnalytics } from '../hooks/useAnalytics'
 
 const Hero = () => {
   const { t } = useTranslation();
+  const { trackCVDownload, trackSocialLinkClick, trackScrollToSection } = useAnalytics();
 
   const scrollToAbout = () => {
     const element = document.querySelector('#about')
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+    trackScrollToSection('about')
   }
 
   const scrollToProjects = () => {
@@ -17,6 +20,7 @@ const Hero = () => {
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' })
     }
+    trackScrollToSection('projects')
   }
 
   const socialLinks = [
@@ -142,7 +146,7 @@ const Hero = () => {
               <FiArrowDown className="w-5 h-5" />
             </motion.button>
             
-            <a href="/ArroyoSantino_Cv.pdf" download>
+            <a href="/ArroyoSantino_Cv.pdf" download onClick={trackCVDownload}>
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -172,6 +176,7 @@ const Hero = () => {
                 transition={{ delay: 1.4 + index * 0.1 }}
                 whileHover={{ scale: 1.2, y: -5 }}
                 whileTap={{ scale: 0.9 }}
+                onClick={() => trackSocialLinkClick(social.label.toLowerCase())}
                 className="w-12 h-12 glass rounded-full flex items-center justify-center text-white hover:text-primary-400 transition-colors duration-300"
               >
                 <social.icon className="w-5 h-5" />

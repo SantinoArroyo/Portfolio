@@ -4,9 +4,11 @@ import { FiExternalLink, FiGithub, FiCode, FiDatabase, FiGlobe, FiCpu, FiMic } f
 import ProjectModal from './ProjectModal'
 import { useTranslation } from 'react-i18next'
 import { Project, FilterOption } from '../types'
+import { useAnalytics } from '../hooks/useAnalytics'
 
 const Projects = () => {
   const { t } = useTranslation();
+  const { trackProjectClick, trackFilterChange, trackSocialLinkClick } = useAnalytics();
   const [activeFilter, setActiveFilter] = useState('all')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
@@ -70,7 +72,8 @@ const Projects = () => {
 
   const handleFilterChange = useCallback((filterId: string) => {
     setActiveFilter(filterId)
-  }, [])
+    trackFilterChange(filterId)
+  }, [trackFilterChange])
 
   return (
     <section id="projects" className="py-20 relative">
@@ -131,7 +134,10 @@ const Projects = () => {
                 exit={{ opacity: 0, scale: 0.8 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 className="glass rounded-2xl overflow-hidden card-hover cursor-pointer"
-                onClick={() => setSelectedProject(project)}
+                onClick={() => {
+                  setSelectedProject(project)
+                  trackProjectClick(project.title, project.category)
+                }}
               >
                 {/* Project Image */}
                 <div className="relative h-48 bg-gradient-to-br from-primary-500/20 to-secondary-500/20">
@@ -182,7 +188,10 @@ const Projects = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         className="flex items-center space-x-2 text-gray-400 hover:text-white transition-colors duration-200"
-                        onClick={(e) => e.stopPropagation()}
+                        onClick={(e) => {
+                          e.stopPropagation()
+                          trackSocialLinkClick('github')
+                        }}
                       >
                         <FiGithub className="w-4 h-4" />
                         <span>{t('projects.code')}</span>

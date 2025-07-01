@@ -4,11 +4,13 @@ import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiGithub, FiLinkedin, FiAle
 import { useTranslation } from 'react-i18next'
 import { FormData } from '../types'
 import { useEmailJS } from '../hooks/useEmailJS'
+import { useAnalytics } from '../hooks/useAnalytics'
 import LoadingSpinner from './LoadingSpinner'
 
 const Contact = () => {
   const { t } = useTranslation();
   const { sendEmail, isLoading, error, resetError } = useEmailJS();
+  const { trackContactFormSubmit, trackSocialLinkClick } = useAnalytics();
   const [formData, setFormData] = useState<FormData>({
     name: '',
     email: '',
@@ -54,6 +56,7 @@ const Contact = () => {
       setIsSubmitted(true)
       setSubmitMessage(response.message)
       setFormData({ name: '', email: '', subject: '', message: '' })
+      trackContactFormSubmit(true)
       
       // Reset success message after 5 seconds
       setTimeout(() => {
@@ -62,6 +65,7 @@ const Contact = () => {
       }, 5000)
     } else {
       setSubmitMessage(response.message)
+      trackContactFormSubmit(false)
     }
   }, [formData, sendEmail, resetError])
 
@@ -145,6 +149,7 @@ const Contact = () => {
                     viewport={{ once: true }}
                     whileHover={{ scale: 1.1, y: -5 }}
                     whileTap={{ scale: 0.9 }}
+                    onClick={() => trackSocialLinkClick(social.label.toLowerCase())}
                     className="w-10 h-10 glass rounded-lg flex items-center justify-center text-white hover:text-primary-400 transition-colors duration-300"
                   >
                     <social.icon className="w-5 h-5" />

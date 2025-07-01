@@ -61,4 +61,10 @@ export interface PersonalInfo {
   icon: React.ComponentType<{ className?: string }>;
   label: string;
   value: string;
+}
+
+export interface ScrollProgressProps {
+  height?: 'sm' | 'md' | 'lg';
+  showPercentage?: boolean;
+  position?: 'top' | 'bottom';
 } 
