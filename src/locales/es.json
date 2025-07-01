@@ -4,7 +4,8 @@
     "about": "Sobre Mí",
     "skills": "Habilidades",
     "projects": "Proyectos",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "analytics": "Analytics"
   },
   "hero": {
     "greeting": "¡Hola! Soy",
@@ -132,5 +133,20 @@
     "rights": "Todos los derechos reservados.",
     "madeWith": "Hecho con",
     "inArgentina": "en Argentina"
+  },
+  "analytics": {
+    "title": "Dashboard Analytics",
+    "subtitle": "Métricas y estadísticas del portfolio",
+    "realTimeData": "Datos en tiempo real",
+    "lastUpdate": "Última actualización:",
+    "pageViews": "Vistas de página",
+    "cvDownloads": "Descargas CV",
+    "contactForms": "Formularios enviados",
+    "projectClicks": "Clicks en proyectos",
+    "avgTimeOnPage": "Tiempo en página",
+    "bounceRate": "Tasa de rebote",
+    "recentActivity": "Actividad Reciente",
+    "daysAgo": "Hace 7 días",
+    "today": "Hoy"
   }
 } 

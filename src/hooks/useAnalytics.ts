@@ -1,4 +1,5 @@
 import { useCallback } from 'react'
+import { updateSessionData } from '../services/analyticsService'
 
 // Tipos para los eventos de Analytics
 interface AnalyticsEvent {
@@ -53,6 +54,7 @@ export const useAnalytics = () => {
       category: 'engagement',
       label: `${projectCategory}: ${projectTitle}`
     })
+    updateSessionData('projectClicks')
   }, [trackEvent])
 
   const trackCVDownload = useCallback(() => {
@@ -61,6 +63,7 @@ export const useAnalytics = () => {
       category: 'engagement',
       label: 'CV Download'
     })
+    updateSessionData('cvDownloads')
   }, [trackEvent])
 
   const trackContactFormSubmit = useCallback((success: boolean) => {
@@ -69,6 +72,9 @@ export const useAnalytics = () => {
       category: 'engagement',
       label: success ? 'success' : 'error'
     })
+    if (success) {
+      updateSessionData('contactForms')
+    }
   }, [trackEvent])
 
   const trackSocialLinkClick = useCallback((platform: string) => {

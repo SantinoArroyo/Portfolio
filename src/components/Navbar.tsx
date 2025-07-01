@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiMail } from 'react-icons/fi'
+import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiMail, FiBarChart } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
@@ -28,6 +28,7 @@ const Navbar = () => {
     { name: t('navbar.skills'), href: '#skills', icon: FiCode },
     { name: t('navbar.projects'), href: '#projects', icon: FiBriefcase },
     { name: t('navbar.contact'), href: '#contact', icon: FiMail },
+    { name: t('navbar.analytics'), href: '#analytics', icon: FiBarChart },
   ]
 
   const scrollToSection = (href: string) => {

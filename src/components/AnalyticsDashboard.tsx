@@ -1,7 +1,8 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { FiEye, FiDownload, FiMail, FiUsers, FiTrendingUp, FiBarChart } from 'react-icons/fi'
+import { FiEye, FiDownload, FiMail, FiUsers, FiTrendingUp, FiBarChart, FiRefreshCw } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
+import { fetchAnalyticsData, getRealTimeData, getTrends, formatNumber, formatTime, AnalyticsData } from '../services/analyticsService'
 
 interface MetricCard {
   title: string
@@ -9,6 +10,7 @@ interface MetricCard {
   icon: React.ComponentType<{ className?: string }>
   color: string
   trend?: string
+  key: keyof AnalyticsData
 }
 
 const AnalyticsDashboard = () => {
@@ -16,65 +18,168 @@ const AnalyticsDashboard = () => {
   const [isVisible, setIsVisible] = useState(false)
   const [metrics, setMetrics] = useState<MetricCard[]>([
     {
-      title: 'Vistas de página',
+      title: t('analytics.pageViews'),
       value: '0',
       icon: FiEye,
       color: 'from-blue-500 to-cyan-500',
-      trend: '+12%'
+      trend: '+12%',
+      key: 'pageViews'
     },
     {
-      title: 'Descargas CV',
+      title: t('analytics.cvDownloads'),
       value: '0',
       icon: FiDownload,
       color: 'from-green-500 to-emerald-500',
-      trend: '+8%'
+      trend: '+8%',
+      key: 'cvDownloads'
     },
     {
-      title: 'Formularios enviados',
+      title: t('analytics.contactForms'),
       value: '0',
       icon: FiMail,
       color: 'from-purple-500 to-pink-500',
-      trend: '+15%'
+      trend: '+15%',
+      key: 'contactForms'
     },
     {
-      title: 'Clicks en proyectos',
+      title: t('analytics.projectClicks'),
       value: '0',
       icon: FiUsers,
       color: 'from-orange-500 to-red-500',
-      trend: '+20%'
+      trend: '+20%',
+      key: 'projectClicks'
     },
     {
-      title: 'Tiempo en página',
+      title: t('analytics.avgTimeOnPage'),
       value: '0s',
       icon: FiTrendingUp,
       color: 'from-indigo-500 to-purple-500',
-      trend: '+5%'
+      trend: '+5%',
+      key: 'avgTimeOnPage'
     },
     {
-      title: 'Tasa de rebote',
+      title: t('analytics.bounceRate'),
       value: '0%',
       icon: FiBarChart,
       color: 'from-yellow-500 to-orange-500',
-      trend: '-3%'
+      trend: '-3%',
+      key: 'bounceRate'
     }
   ])
 
-  useEffect(() => {
-    // Simular carga de datos reales de Analytics
-    const loadMetrics = async () => {
-      // En un entorno real, aquí harías una llamada a la API de Google Analytics
-      // Por ahora, simulamos datos
-      setTimeout(() => {
-        setMetrics(prev => prev.map(metric => ({
-          ...metric,
-          value: Math.floor(Math.random() * 1000) + 100
-        })))
-        setIsVisible(true)
-      }, 1000)
-    }
+  const [analyticsData, setAnalyticsData] = useState<AnalyticsData | null>(null)
+  const [isRefreshing, setIsRefreshing] = useState(false)
+  const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
 
-    loadMetrics()
+  useEffect(() => {
+    loadAnalyticsData()
   }, [])
+
+  // Actualizar títulos de métricas cuando cambie el idioma
+  useEffect(() => {
+    setMetrics(prev => prev.map(metric => ({
+      ...metric,
+      title: (() => {
+        switch (metric.key) {
+          case 'pageViews':
+            return t('analytics.pageViews')
+          case 'cvDownloads':
+            return t('analytics.cvDownloads')
+          case 'contactForms':
+            return t('analytics.contactForms')
+          case 'projectClicks':
+            return t('analytics.projectClicks')
+          case 'avgTimeOnPage':
+            return t('analytics.avgTimeOnPage')
+          case 'bounceRate':
+            return t('analytics.bounceRate')
+          default:
+            return metric.title
+        }
+      })()
+    })))
+  }, [t])
+
+  const loadAnalyticsData = async () => {
+    setIsRefreshing(true)
+    try {
+      const data = await fetchAnalyticsData()
+      setAnalyticsData(data)
+      setLastUpdated(new Date())
+      
+      // Actualizar métricas con datos reales
+      setMetrics(prev => prev.map(metric => {
+        let value: string | number = 0
+        
+        switch (metric.key) {
+          case 'pageViews':
+            value = formatNumber(data.pageViews)
+            break
+          case 'cvDownloads':
+            value = formatNumber(data.cvDownloads)
+            break
+          case 'contactForms':
+            value = formatNumber(data.contactForms)
+            break
+          case 'projectClicks':
+            value = formatNumber(data.projectClicks)
+            break
+          case 'avgTimeOnPage':
+            value = formatTime(data.avgTimeOnPage)
+            break
+          case 'bounceRate':
+            value = `${data.bounceRate}%`
+            break
+        }
+        
+        return {
+          ...metric,
+          value
+        }
+      }))
+      
+      setIsVisible(true)
+    } catch (error) {
+      console.error('Error loading analytics data:', error)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }
+
+  // Actualizar datos en tiempo real
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const realTimeData = getRealTimeData()
+      if (analyticsData) {
+                 setMetrics(prev => prev.map(metric => {
+           const realTimeValue = realTimeData[metric.key]
+           if (realTimeValue !== undefined && typeof realTimeValue === 'number') {
+             let value: string | number = 0
+             
+             switch (metric.key) {
+               case 'pageViews':
+                 value = formatNumber(realTimeValue)
+                 break
+               case 'cvDownloads':
+                 value = formatNumber(realTimeValue)
+                 break
+               case 'contactForms':
+                 value = formatNumber(realTimeValue)
+                 break
+               case 'projectClicks':
+                 value = formatNumber(realTimeValue)
+                 break
+             }
+             
+             return { ...metric, value }
+           }
+           return metric
+         }))
+      }
+    }, 5000) // Actualizar cada 5 segundos
+
+    return () => clearInterval(interval)
+  }, [analyticsData])
 
   if (!isVisible) {
     return (
@@ -85,7 +190,7 @@ const AnalyticsDashboard = () => {
   }
 
   return (
-    <section className="py-20 relative">
+    <section id="analytics" className="py-20 relative">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
@@ -94,12 +199,32 @@ const AnalyticsDashboard = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-4">
-            <span className="gradient-text">Dashboard Analytics</span>
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-            Métricas y estadísticas del portfolio
+          <div className="flex items-center justify-center space-x-4 mb-4">
+            <h2 className="text-4xl md:text-5xl font-bold text-white">
+              <span className="gradient-text">{t('analytics.title')}</span>
+            </h2>
+            <motion.button
+              onClick={loadAnalyticsData}
+              disabled={isRefreshing}
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              className="p-2 text-white hover:text-primary-400 transition-colors disabled:opacity-50"
+            >
+              <FiRefreshCw className={`w-6 h-6 ${isRefreshing ? 'animate-spin' : ''}`} />
+            </motion.button>
+          </div>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-4">
+            {t('analytics.subtitle')}
           </p>
+          <div className="flex items-center justify-center space-x-2">
+            <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+            <span className="text-sm text-green-400">{t('analytics.realTimeData')}</span>
+            {lastUpdated && (
+              <span className="text-xs text-gray-500 ml-4">
+                {t('analytics.lastUpdate')} {lastUpdated.toLocaleTimeString()}
+              </span>
+            )}
+          </div>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -143,23 +268,33 @@ const AnalyticsDashboard = () => {
           viewport={{ once: true }}
           className="mt-16 glass rounded-2xl p-8"
         >
-          <h3 className="text-2xl font-bold text-white mb-6">Actividad Reciente</h3>
+          <h3 className="text-2xl font-bold text-white mb-6">{t('analytics.recentActivity')}</h3>
           <div className="h-64 flex items-end justify-center space-x-2">
-            {Array.from({ length: 7 }, (_, i) => (
+            {analyticsData?.recentActivity.map((value, i) => (
               <motion.div
                 key={i}
                 initial={{ height: 0 }}
-                whileInView={{ height: Math.random() * 100 + 20 }}
+                whileInView={{ height: (value / Math.max(...analyticsData.recentActivity)) * 200 + 20 }}
                 transition={{ duration: 0.5, delay: i * 0.1 }}
                 viewport={{ once: true }}
                 className="w-8 bg-gradient-to-t from-primary-500 to-secondary-500 rounded-t-lg"
-                style={{ height: `${Math.random() * 100 + 20}px` }}
+                style={{ height: `${(value / Math.max(...analyticsData.recentActivity)) * 200 + 20}px` }}
+              />
+            )) || Array.from({ length: 7 }, (_, i) => (
+              <motion.div
+                key={i}
+                initial={{ height: 0 }}
+                whileInView={{ height: 20 }}
+                transition={{ duration: 0.5, delay: i * 0.1 }}
+                viewport={{ once: true }}
+                className="w-8 bg-gradient-to-t from-primary-500 to-secondary-500 rounded-t-lg"
+                style={{ height: '20px' }}
               />
             ))}
           </div>
           <div className="flex justify-between text-sm text-gray-400 mt-4">
-            <span>Hace 7 días</span>
-            <span>Hoy</span>
+            <span>{t('analytics.daysAgo')}</span>
+            <span>{t('analytics.today')}</span>
           </div>
         </motion.div>
       </div>

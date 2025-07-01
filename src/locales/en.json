@@ -4,7 +4,8 @@
     "about": "About Me",
     "skills": "Skills",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "analytics": "Analytics"
   },
   "hero": {
     "greeting": "Hi! I'm",
@@ -132,5 +133,20 @@
     "rights": "All rights reserved.",
     "madeWith": "Made with",
     "inArgentina": "in Argentina"
+  },
+  "analytics": {
+    "title": "Analytics Dashboard",
+    "subtitle": "Portfolio metrics and statistics",
+    "realTimeData": "Real-time data",
+    "lastUpdate": "Last updated:",
+    "pageViews": "Page Views",
+    "cvDownloads": "CV Downloads",
+    "contactForms": "Contact Forms",
+    "projectClicks": "Project Clicks",
+    "avgTimeOnPage": "Avg. Time on Page",
+    "bounceRate": "Bounce Rate",
+    "recentActivity": "Recent Activity",
+    "daysAgo": "7 days ago",
+    "today": "Today"
   }
 } 
