@@ -11,7 +11,7 @@ const Navbar = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 50)
+      setScrolled(window.scrollY > 20)
     }
     window.addEventListener('scroll', handleScroll)
     return () => window.removeEventListener('scroll', handleScroll)
@@ -41,117 +41,137 @@ const Navbar = () => {
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.5 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        scrolled ? 'glass py-2' : 'bg-transparent py-4'
-      }`}
+      initial={{ y: -100, opacity: 0 }}
+      animate={{ y: 0, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`fixed top-6 left-0 right-0 z-50 flex justify-center px-4 pointer-events-none`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center">
-          {/* Logo */}
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            className="flex items-center space-x-2"
-          >
-            <div className="w-10 h-10 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-xl">S</span>
-            </div>
-            <span className="text-xl font-bold gradient-text">Santino</span>
-          </motion.div>
+      <div
+        className={`
+          pointer-events-auto
+          relative flex items-center justify-between 
+          w-full max-w-4xl px-6 py-3 rounded-full transition-all duration-500
+          ${scrolled || isOpen ? 'glass-dark shadow-[0_0_30px_rgba(0,0,0,0.5)] border-white/10' : 'bg-transparent border-transparent'}
+          backdrop-blur-xl
+        `}
+      >
+        {/* Logo */}
+        <motion.div
+          whileHover={{ scale: 1.05 }}
+          className="flex items-center space-x-3 cursor-pointer group"
+          onClick={() => scrollToSection('#home')}
+        >
+          <div className="w-10 h-10 bg-gradient-to-br from-neon-cyan to-neon-blue rounded-full flex items-center justify-center shadow-[0_0_15px_rgba(0,243,255,0.4)] group-hover:shadow-[0_0_25px_rgba(0,243,255,0.6)] transition-all duration-300">
+            <span className="text-dark-950 font-black text-xl font-sans">S</span>
+          </div>
+          <span className={`text-lg font-bold tracking-tight ${scrolled || isOpen ? 'text-white' : 'text-white/90'}`}>
+            Santino<span className="text-neon-cyan">.</span>
+          </span>
+        </motion.div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
-            {navItems.map((item, index) => (
-              <motion.button
-                key={item.name}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => scrollToSection(item.href)}
-                className="flex items-center space-x-2 text-white hover:text-primary-400 transition-colors duration-200"
-              >
-                <item.icon className="w-4 h-4" />
-                <span>{item.name}</span>
-              </motion.button>
-            ))}
-            {/* Language Dropdown */}
-            <div className="relative">
-              <button
-                onClick={() => setLangMenu(!langMenu)}
-                aria-label="Cambiar idioma"
-                aria-expanded={langMenu}
-                aria-haspopup="true"
-                className="ml-4 px-3 py-2 rounded-lg bg-gray-800 text-white hover:bg-primary-400 hover:text-white transition-colors duration-200"
-              >
-                {i18n.language === 'es' ? 'ES' : 'EN'} ▼
-              </button>
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex items-center space-x-1 bg-white/5 rounded-full p-1.5 border border-white/5 backdrop-blur-sm">
+          {navItems.map((item) => (
+            <motion.button
+              key={item.name}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={() => scrollToSection(item.href)}
+              className="relative px-4 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200"
+            >
+              {item.name}
+            </motion.button>
+          ))}
+        </div>
+
+        {/* Right Actions */}
+        <div className="hidden md:flex items-center space-x-4">
+          {/* Language Dropdown */}
+          <div className="relative">
+            <button
+              onClick={() => setLangMenu(!langMenu)}
+              className="flex items-center space-x-1 px-3 py-1.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/5 text-sm text-gray-300 transition-all hover:border-neon-cyan/30"
+            >
+              <span>{i18n.language === 'es' ? '🇪🇸' : '🇺🇸'}</span>
+              <span className="text-xs ml-1">▼</span>
+            </button>
+
+            <AnimatePresence>
               {langMenu && (
-                <div className="absolute right-0 mt-2 w-24 bg-white rounded-lg shadow-lg z-50">
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  className="absolute right-0 mt-2 w-32 glass-dark rounded-2xl overflow-hidden shadow-xl border border-white/10"
+                >
                   <button
                     onClick={() => changeLanguage('es')}
-                    className="block w-full px-4 py-2 text-left hover:bg-primary-100 text-gray-800"
+                    className="w-full px-4 py-3 text-left text-sm text-gray-300 hover:bg-neon-cyan/10 hover:text-neon-cyan flex items-center space-x-2 transition-colors"
                   >
-                    Español
+                    <span>🇪🇸</span> <span>Español</span>
                   </button>
                   <button
                     onClick={() => changeLanguage('en')}
-                    className="block w-full px-4 py-2 text-left hover:bg-primary-100 text-gray-800"
+                    className="w-full px-4 py-3 text-left text-sm text-gray-300 hover:bg-neon-cyan/10 hover:text-neon-cyan flex items-center space-x-2 transition-colors"
                   >
-                    English
+                    <span>🇺🇸</span> <span>English</span>
                   </button>
-                </div>
+                </motion.div>
               )}
-            </div>
-          </div>
-
-          {/* Mobile menu button */}
-          <div className="md:hidden">
-            <motion.button
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setIsOpen(!isOpen)}
-              className="text-white hover:text-primary-400 transition-colors duration-200"
-            >
-              {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
-            </motion.button>
+            </AnimatePresence>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
-        <AnimatePresence>
-          {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-              className="md:hidden mt-4 glass rounded-lg overflow-hidden"
-            >
-              <div className="px-4 py-2 space-y-2">
-                {navItems.map((item, index) => (
-                  <motion.button
-                    key={item.name}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: index * 0.1 }}
-                    whileHover={{ x: 10 }}
-                    onClick={() => scrollToSection(item.href)}
-                    className="flex items-center space-x-3 w-full text-left text-white hover:text-primary-400 transition-colors duration-200 py-2"
-                  >
-                    <item.icon className="w-4 h-4" />
-                    <span>{item.name}</span>
-                  </motion.button>
-                ))}
-              </div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {/* Mobile Menu Button */}
+        <div className="md:hidden flex items-center space-x-4">
+          <button
+            onClick={() => changeLanguage(i18n.language === 'es' ? 'en' : 'es')}
+            className="text-xl hover:scale-110 transition-transform"
+          >
+            {i18n.language === 'es' ? '🇪🇸' : '🇺🇸'}
+          </button>
+
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            onClick={() => setIsOpen(!isOpen)}
+            className="p-2 rounded-full bg-white/5 text-white hover:bg-white/10 transition-colors border border-white/5"
+          >
+            {isOpen ? <FiX size={24} /> : <FiMenu size={24} />}
+          </motion.button>
+        </div>
       </div>
+
+      {/* Mobile Navigation Overlay */}
+      <AnimatePresence>
+        {isOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0, y: -20 }}
+            animate={{ opacity: 1, height: 'auto', y: 0 }}
+            exit={{ opacity: 0, height: 0, y: -20 }}
+            className="absolute top-full left-0 right-0 mt-4 px-4 md:hidden pointer-events-auto"
+          >
+            <div className="glass-dark rounded-3xl p-4 space-y-2 shadow-2xl border border-white/10 backdrop-blur-xl">
+              {navItems.map((item, index) => (
+                <motion.button
+                  key={item.name}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.05 }}
+                  onClick={() => scrollToSection(item.href)}
+                  className="flex items-center space-x-4 w-full p-3 rounded-2xl text-gray-300 hover:bg-white/10 hover:text-white transition-all group"
+                >
+                  <div className="p-2 rounded-xl bg-white/5 text-neon-cyan group-hover:bg-neon-cyan/20 transition-colors">
+                    <item.icon size={18} />
+                  </div>
+                  <span className="font-medium">{item.name}</span>
+                </motion.button>
+              ))}
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }
 
-export default Navbar 
+export default Navbar
