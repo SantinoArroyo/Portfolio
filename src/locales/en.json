@@ -1,0 +1,184 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About Me",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "greeting": "Hi! I'm",
+    "title": "Data Scientist & AI Engineer",
+    "description": "Advanced Systems Engineering student at UTN FRSFCO. Specialized in Data Science and Artificial Intelligence. Member of the GISAI research group and the DataStatLab laboratory. Transforming data into intelligent solutions.",
+    "viewProjects": "View Projects",
+    "downloadCV": "Download CV"
+  },
+  "about": {
+    "title": "About Me",
+    "subtitle": "Engineering student passionate about artificial intelligence, data analysis, and the development of innovative data-driven solutions.",
+    "personalInfo": "Personal Information",
+    "historyTitle": "My Story",
+    "history1": "I am a UTN student with a strong interest in artificial intelligence and data analysis. I have experience in data analysis and development of predictive models, combining statistical tools and programming to extract valuable information from large volumes of data.",
+    "history2": "During my academic and professional career, I have worked with Python and its main data analysis and machine learning libraries (Pandas, NumPy, Matplotlib, Scikit-learn), as well as SQL databases and visualization in Power BI. Additionally, I have experience in time series analysis models such as SARIMA and Holt-Winters, as well as in Deep Learning, applying LSTM neural networks for sequential data prediction.",
+    "history3": "I am motivated by research and development of new artificial intelligence technologies, always seeking to optimize processes and discover innovative solutions.",
+    "experienceTitle": "My Experience",
+    "location": "Location",
+    "locationValue": "Arroyito, Córdoba, Argentina",
+    "email": "Email",
+    "phone": "Phone",
+    "age": "Age",
+    "ageValue": "22 years old",
+    "exp1": {
+      "year": "2024 - Present",
+      "title": "Disertante en 'Cursos para la SECU'",
+      "company": "National Technological University",
+      "description": "Speaker at the Systems Engineering Laboratory."
+    },
+    "exp2": {
+      "year": "2024 - Present",
+      "title": "Member of the Statistics Laboratory",
+      "company": "UTN FRSFCO - DataStatLab",
+      "description": "Database management, information processing, and visualization with tools like Power BI."
+    },
+    "exp3": {
+      "year": "2022 - Present",
+      "title": "Researcher and Teacher in AI",
+      "company": "UTN / GISAI Group",
+      "description": "As a Research Professor (Cat. G) and member of the GISAI group, I participate in R&D projects applying AI and Machine Learning, and contribute to training in emerging technologies."
+    }
+  },
+  "skills": {
+    "title": "My Skills",
+    "subtitle": "A look at the technologies, tools, and knowledge I handle.",
+    "additional": "Additional Skills",
+    "teamwork": "Teamwork",
+    "problemSolving": "Problem Solving",
+    "proactivity": "Proactivity",
+    "adaptability": "Adaptability",
+    "logicalThinking": "Logical Thinking",
+    "accountingKnowledge": "Accounting Knowledge",
+    "predictiveModels": "Predictive Models (Time Series)",
+    "algorithms": "Algorithms and Data Structures"
+  },
+  "projects": {
+    "title": "My Projects",
+    "subtitle": "A sample of my work and the technologies I use to create innovative solutions",
+    "all": "All",
+    "ai": "AI",
+    "data": "Data",
+    "speaking": "Speaking",
+    "desarrollo": "Development",
+    "featured": "Featured",
+    "details": "View Details",
+    "code": "Code",
+    "gallery": "Gallery",
+    "demo": "View Demo",
+    "p6": {
+      "title": "Data Automation & Analytics for Metalúrgica Cesca",
+      "description": "End-to-end Docker + n8n pipeline for Cesca data, Looker dashboards, and K-Means customer segmentation.",
+      "details": "University-industry project (UTN FRSFCO, GISAI) with Metalúrgica Cesca. With Gonzalo Nazzetta and Belén Silvano Ruata and mentored by Rebeca Yuan, we delivered an end-to-end solution: \n\n- Orchestration in n8n on Docker: automatic file detection, Python cleaning/validation, duplicate control, folder housekeeping, GitHub versioning.\n- Data on Google Cloud (Sheets/Drive) structured by customers, billing, and debtors.\n- Executive dashboards in Google Looker Studio with KPIs for decision-making.\n- Advanced analytics: customer segmentation using K-Means.\n- Full documentation: user manual and technical guide for maintenance and scalability.\n\nTech: Docker, n8n, Python, Google Cloud APIs, Looker Studio, GitHub, K-Means.",
+      "tech1": "Docker + n8n",
+      "tech2": "Python",
+      "tech3": "Google Cloud / Looker",
+      "tech4": "K-Means"
+    },
+    "p1": {
+      "title": "Research and Development in Time Series",
+      "description": "As a member of GISAI, I developed prediction models (SARIMA and LSTM) to analyze the behavior of photovoltaic production at UTN, applying AI and Deep Learning.",
+      "details": "As a member of the GISAI research group (Research Group in Signals, Systems, and Artificial Intelligence), I actively participated in the statistical analysis of the time series and the creation and development of prediction models for photovoltaic production at the National Technological University (UTN), Córdoba Regional Faculty.\n\nDeveloped models:\n- SARIMA (Seasonal AutoRegressive Integrated Moving Average): Statistical model to capture seasonality and trends in historical solar production data.\n- LSTM (Long Short-Term Memory): Recurrent neural network specialized in time series, used to compare its performance against the traditional statistical model.\n\nBoth models were evaluated using metrics such as MAE and RMSE, which allowed analyzing their advantages and limitations in the context of energy prediction. This experience allowed me to deepen my knowledge in data analysis, time series processing, and the application of advanced Machine Learning and Deep Learning techniques to solve real challenges in the field of renewable energy.",
+      "tech1": "Python",
+      "tech2": "Machine Learning",
+      "tech3": "Data Analysis",
+      "tech4": "Deep Learning"
+    },
+    "p2": {
+      "title": "Data Analysis and Visualization",
+      "description": "Development and management of databases, and creation of interactive dashboards.",
+      "details": "In my role at DataStatLab, I am responsible for the entire data lifecycle. From initial collection and cleaning, through storage and management in SQL and NoSQL databases, to processing and transformation for analysis. Finally, I create interactive dashboards and reports using tools like Power BI and Tableau to facilitate data-driven decision making.",
+      "tech1": "Power BI",
+      "tech2": "SQL",
+      "tech3": "Databases",
+      "tech4": "ETL"
+    },
+    "p3": {
+      "title": "Speaker at Smart Grids & AI Seminar",
+      "description": "Presentation on the application of AI in smart electrical grids.",
+      "details": "With GISAI, we had the honor of being invited as speakers at the internal seminar on Smart Grids and Artificial Intelligence at UTN - Córdoba Regional Faculty. Our presentation focused on how AI algorithms can be used to make predictions of electric energy production. Together with the group, we presented our prediction models (SARIMA, Holt-Winters, and LSTM) to make 1-year predictions of photovoltaic production for a group of solar panels, sharing knowledge and case studies with professionals in the sector.",
+      "tech1": "Artificial Intelligence",
+      "tech2": "Smart Grids",
+      "tech3": "Public Speaking"
+    },
+    "p4": {
+      "title": "Speaker at RPIC 2025",
+      "description": "Presentation of paper on predictive models at RPIC 2025 Congress at UTN San Francisco.",
+      "details": "I was a speaker at the Information and Control Processing Meeting (RPIC) 2025, presenting our research work on the application of predictive models (SARIMA, LSTM) for photovoltaic production estimation. This event brings together experts in control and signal processing from across the country.",
+      "tech1": "Research",
+      "tech2": "Public Speaking",
+      "tech3": "Scientific Publication",
+      "tech4": "Congress"
+    },
+    "p5": {
+      "title": "Statistical Process Simulator (SoEP)",
+      "description": "Web platform for modeling, simulation and analysis of production processes with statistical rigor.",
+      "details": "The Statistical Process Simulator (SoEP) is a web platform designed to model, simulate and analyze production or operational processes. It integrates a discrete event simulation engine (SimPy) with a visual interface (React Flow). Features: Visual modeling, advanced statistical distributions, multiple replicas execution, results dashboard with KPIs and economic analysis (NPV, IRR). Stack: FastAPI, PostgreSQL, Redis, Next.js, Tailwind CSS, Docker.",
+      "tech1": "Python (FastAPI/SimPy)",
+      "tech2": "React (Next.js)",
+      "tech3": "PostgreSQL/Redis",
+      "tech4": "Docker"
+    },
+    "p6": {
+      "title": "Data Automation & Analytics for Metalúrgica Cesca",
+      "description": "End-to-end Docker + n8n pipeline for Cesca data, Looker dashboards, and K-Means customer segmentation.",
+      "details": "University-industry project (UTN FRSFCO, GISAI) with Metalúrgica Cesca. With Gonzalo Nazzetta and Belén Silvano Ruata and mentored by Rebeca Yuan, we delivered an end-to-end solution: \n\n- Orchestration in n8n on Docker: automatic file detection, Python cleaning/validation, duplicate control, folder housekeeping, GitHub versioning.\n- Data on Google Cloud (Sheets/Drive) structured by customers, billing, and debtors.\n- Executive dashboards in Google Looker Studio with KPIs for decision-making.\n- Advanced analytics: customer segmentation using K-Means.\n- Full documentation: user manual and technical guide for maintenance and scalability.\n\nTech: Docker, n8n, Python, Google Cloud APIs, Looker Studio, GitHub, K-Means.",
+      "tech1": "Docker + n8n",
+      "tech2": "Python",
+      "tech3": "Google Cloud / Looker",
+      "tech4": "K-Means"
+    },
+    "p7": {
+      "title": "Web System for Car Dealership",
+      "description": "Full-stack web development for automotive dealership with inventory management and catalog system.",
+      "details": "Full-stack development of a web platform for automotive dealership. The system includes inventory management, vehicle catalog, advanced filtering system, and administration panel. Implemented with modern technologies and responsive design to ensure the best user experience.",
+      "tech1": "React",
+      "tech2": "Node.js",
+      "tech3": "Database",
+      "tech4": "REST API"
+    }
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Do you have a project in mind? I'd love to hear about it!",
+    "letsTalk": "Let's Talk!",
+    "formTitle": "Send me a message",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "send": "Send",
+    "sending": "Sending...",
+    "sent": "Message sent!",
+    "thanks": "Thank you for contacting me. I'll get back to you soon.",
+    "follow": "Follow me on social media",
+    "phone": "Phone",
+    "location": "Location",
+    "locationValue": "Arroyito, Córdoba, Argentina",
+    "intro": "I am always interested in new projects and opportunities. If you have an idea or project in mind, feel free to contact me. I will reply as soon as possible.",
+    "placeholderName": "Your name",
+    "placeholderEmail": "your@email.com",
+    "placeholderSubject": "How can I help you?",
+    "placeholderMessage": "Tell me about your project...",
+    "validationRequired": "Please fill in all the fields before sending.",
+    "validationEmail": "Please enter a valid email address."
+  },
+  "footer": {
+    "student": "Systems Engineering student and Data Scientist, passionate about Artificial Intelligence and the development of innovative technological solutions.",
+    "quickLinks": "Quick Links",
+    "contact": "Contact",
+    "email": "Email:",
+    "phone": "Phone:",
+    "location": "Location:",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with",
+    "inArgentina": "in Argentina"
+  }
+} 

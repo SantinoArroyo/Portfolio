@@ -1,0 +1,175 @@
+{
+  "navbar": {
+    "home": "Inicio",
+    "about": "Sobre Mí",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto"
+  },
+  "hero": {
+    "greeting": "¡Hola! Soy",
+    "title": "Data Scientist & IA Engineer",
+    "description": "Estudiante avanzado de Ingeniería en Sistemas en UTN FRSFCO. Especializado en Ciencia de Datos e Inteligencia Artificial. Integrante del grupo de I+D GISAI y del laboratorio DataStatLab. Transformando datos en soluciones inteligentes.",
+    "viewProjects": "Ver Proyectos",
+    "downloadCV": "Descargar CV"
+  },
+  "about": {
+    "title": "Sobre Mí",
+    "subtitle": "Estudiante de ingeniería con pasión por la inteligencia artificial, el análisis de datos y la automatización.",
+    "personalInfo": "Información Personal",
+    "historyTitle": "Mi Historia",
+    "history1": "Soy Santino Arroyo, estudiante avanzado de Ingeniería en Sistemas de Información en la UTN FRSFCO. Mi enfoque principal es la investigación y desarrollo en Inteligencia Artificial y Ciencia de Datos.",
+    "history2": "Formo parte del grupo de I+D GISAI, donde investigo sobre aplicaciones inteligentes, y del DataStatLab, donde gestiono bases de datos y visualizaciones. Tengo experiencia sólida en Python, SQL, R y herramientas como Power BI y Tableau.",
+    "history3": "Me considero totalmente autodidacta, proactivo y con gran capacidad de adaptación. Busco constantemente nuevos desafíos para aplicar mis conocimientos en algoritmos, estructuras de datos y modelos predictivos.",
+    "experienceTitle": "Mi Trayectoria",
+    "location": "Ubicación",
+    "locationValue": "Arroyito, Córdoba, Argentina",
+    "email": "Email",
+    "phone": "Teléfono",
+    "age": "Edad",
+    "ageValue": "22 años",
+    "exp1": {
+      "year": "2024 - Actualidad",
+      "title": "Disertante en 'Cursos para la SECU'",
+      "company": "Universidad Tecnológica Nacional",
+      "description": "Disertante en el Laboratorio de Ingeniería en Sistemas."
+    },
+    "exp2": {
+      "year": "2024 - Actualidad",
+      "title": "Miembro del Laboratorio de Estadística",
+      "company": "UTN FRSFCO - DataStatLab",
+      "description": "Gestión de bases de datos, procesamiento de información y visualización con herramientas como Power BI."
+    },
+    "exp3": {
+      "year": "2023 - Actualidad",
+      "title": "Docente Investigador en GISAI",
+      "company": "UTN / Grupo GISAI",
+      "description": "Docente Investigador (Cat. G). Participación en proyectos de I+D aplicando IA y Machine Learning."
+    }
+  },
+  "skills": {
+    "title": "Mis Habilidades",
+    "subtitle": "Un vistazo a las tecnologías, herramientas y conocimientos que manejo.",
+    "additional": "Habilidades Adicionales",
+    "teamwork": "Trabajo en Equipo",
+    "problemSolving": "Resolución de Problemas",
+    "proactivity": "Proactividad",
+    "adaptability": "Adaptabilidad",
+    "logicalThinking": "Pensamiento Lógico",
+    "accountingKnowledge": "Conocimientos Contables",
+    "predictiveModels": "Modelos Predictivos",
+    "algorithms": "Algoritmos y Estructuras de Datos"
+  },
+  "projects": {
+    "title": "Mis Proyectos",
+    "subtitle": "Una muestra de mi trabajo y las tecnologías que utilizo para crear soluciones innovadoras",
+    "all": "Todos",
+    "ai": "IA",
+    "data": "Datos",
+    "speaking": "Disertaciones",
+    "desarrollo": "Desarrollo",
+    "featured": "Destacado",
+    "details": "Ver Detalles",
+    "code": "Código",
+    "gallery": "Galería",
+    "demo": "Ver Demo",
+    "p1": {
+      "title": "Investigación y Desarrollo en Series Temporales",
+      "description": "Desarrollo de modelos de predicción (SARIMA y LSTM) para analizar la producción fotovoltaica en la UTN.",
+      "details": "Como integrante del grupo de investigación GISAI, participé en el análisis estadístico y desarrollo de modelos de predicción para la producción fotovoltaica. Implementé modelos SARIMA para capturar estacionalidad y redes neuronales LSTM para comparar desempeño. Evaluamos los modelos con métricas MAE y RMSE.",
+      "tech1": "Python",
+      "tech2": "Machine Learning",
+      "tech3": "Análisis de Datos",
+      "tech4": "Deep Learning"
+    },
+    "p2": {
+      "title": "Análisis y Visualización de Datos",
+      "description": "Desarrollo y gestión de bases de datos, y creación de dashboards interactivos en DataStatLab.",
+      "details": "Responsable del ciclo de vida de los datos en DataStatLab: recolección, limpieza, almacenamiento en SQL/NoSQL y visualización. Creación de dashboards interactivos en Power BI y Tableau para la toma de decisiones.",
+      "tech1": "Power BI",
+      "tech2": "SQL",
+      "tech3": "Bases de Datos",
+      "tech4": "ETL"
+    },
+    "p3": {
+      "title": "Disertante en Seminario Smart Grids & IA",
+      "description": "Presentación sobre la aplicación de la IA en redes eléctricas inteligentes.",
+      "details": "Disertante en seminario interno sobre Smart Grids e IA en UTN Córdoba. Presentación de modelos de predicción (SARIMA, Holt-Winters y LSTM) para la producción fotovoltaica.",
+      "tech1": "Inteligencia Artificial",
+      "tech2": "Smart Grids",
+      "tech3": "Oratoria"
+    },
+    "p4": {
+      "title": "Disertante en RPIC 2025",
+      "description": "Presentación del paper sobre modelos predictivos en el Congreso RPIC 2025 en UTN San Francisco.",
+      "details": "Fui disertante en la Reunión de Procesamiento de la Información y Control (RPIC) 2025, presentando nuestro trabajo de investigación sobre la aplicación de modelos predictivos (SARIMA, LSTM) para la estimación de producción fotovoltaica. Este evento reúne a expertos en control y procesamiento de señales de todo el país.",
+      "tech1": "Investigación",
+      "tech2": "Oratoria",
+      "tech3": "Publicación Científica",
+      "tech4": "Congreso"
+    },
+    "p5": {
+      "title": "Simulador Estadístico de Procesos (SoEP)",
+      "description": "Plataforma web para modelado, simulación y análisis de procesos productivos con rigor estadístico.",
+      "details": "El Simulador Estadístico de Procesos (SoEP) es una plataforma web diseñada para modelar, simular y analizar procesos productivos u operativos. Integra un motor de simulación de eventos discretos (SimPy) con una interfaz visual (React Flow). Características: Modelado visual, distribuciones estadísticas avanzadas, ejecución de múltiples réplicas, dashboard de resultados con KPIs y análisis económico (NPV, IRR). Stack: FastAPI, PostgreSQL, Redis, Next.js, Tailwind CSS, Docker.",
+      "tech1": "Python (FastAPI/SimPy)",
+      "tech2": "React (Next.js)",
+      "tech3": "PostgreSQL/Redis",
+      "tech4": "Docker"
+    },
+    "p6": {
+      "title": "Automatización y Analytics para Metalúrgica Cesca",
+      "description": "Arquitectura end-to-end en Docker + n8n para orquestar datos de Cesca, con dashboards en Looker y segmentación K-Means.",
+      "details": "Proyecto de vinculación UTN FRSFCO junto a Metalúrgica Cesca (con GISAI). Con Gonzalo Nazzetta, Belén Silvano Ruata y bajo la supervisión de Rebeca Yuan, construimos una solución end-to-end: \n\n- Orquestación en n8n sobre Docker: detección automática de archivos, limpieza/validación en Python, control de duplicados, housekeeping de carpetas y versionado en GitHub.\n- Datos en Google Cloud (Sheets/Drive) estructurados por clientes, facturación y deudores.\n- Dashboards ejecutivos en Google Looker Studio con KPIs para decisiones gerenciales.\n- Analítica avanzada: segmentación de clientes con K-Means.\n- Documentación completa: manual de uso y guía técnica para mantenimiento/escalabilidad.\n\nTecnologías: Docker, n8n, Python, Google Cloud APIs, Looker Studio, GitHub, K-Means.",
+      "tech1": "Docker + n8n",
+      "tech2": "Python",
+      "tech3": "Google Cloud / Looker",
+      "tech4": "K-Means"
+    },
+    "p7": {
+      "title": "Sistema Web para Concesionaria",
+      "description": "Desarrollo de página web completa para concesionaria de automóviles con gestión de inventario y catálogo.",
+      "details": "Desarrollo full-stack de una plataforma web para concesionaria de automóviles. El sistema incluye gestión de inventario, catálogo de vehículos, sistema de filtrado avanzado y panel de administración. Implementado con tecnologías modernas y diseño responsive para garantizar la mejor experiencia de usuario.",
+      "tech1": "React",
+      "tech2": "Node.js",
+      "tech3": "Base de Datos",
+      "tech4": "API REST"
+    }
+  },
+  "contact": {
+    "title": "Contacto",
+    "subtitle": "¿Tienes un proyecto en mente? ¡Me encantaría escuchar sobre él!",
+    "letsTalk": "¡Hablemos!",
+    "formTitle": "Envíame un mensaje",
+    "name": "Nombre",
+    "email": "Email",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "send": "Enviar",
+    "sending": "Enviando...",
+    "sent": "¡Mensaje enviado!",
+    "thanks": "Gracias por contactarme. Te responderé pronto.",
+    "follow": "Sígueme en redes",
+    "phone": "Teléfono",
+    "location": "Ubicación",
+    "locationValue": "Arroyito, Córdoba, Argentina",
+    "intro": "Estoy siempre interesado en nuevos proyectos y oportunidades. Si tienes una idea o proyecto en mente, no dudes en contactarme.",
+    "placeholderName": "Tu nombre",
+    "placeholderEmail": "tu@email.com",
+    "placeholderSubject": "¿En qué puedo ayudarte?",
+    "placeholderMessage": "Cuéntame sobre tu proyecto...",
+    "validationRequired": "Completa todos los campos antes de enviar.",
+    "validationEmail": "Ingresa un email válido para poder contactarte."
+  },
+  "footer": {
+    "student": "Estudiante de Ingeniería en Sistemas y Científico de Datos, apasionado por la Inteligencia Artificial y el desarrollo de soluciones tecnológicas innovadoras.",
+    "quickLinks": "Enlaces Rápidos",
+    "contact": "Contacto",
+    "email": "Email:",
+    "phone": "Teléfono:",
+    "location": "Ubicación:",
+    "rights": "Todos los derechos reservados.",
+    "madeWith": "Hecho con",
+    "inArgentina": "en Argentina"
+  }
+}

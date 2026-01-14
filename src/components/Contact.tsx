@@ -1,0 +1,324 @@
+import { useState, useCallback } from 'react'
+import { motion } from 'framer-motion'
+import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiGithub, FiLinkedin, FiAlertCircle } from 'react-icons/fi'
+import { useTranslation } from 'react-i18next'
+import { FormData } from '../types'
+import { useEmailJS } from '../hooks/useEmailJS'
+import { useAnalytics } from '../hooks/useAnalytics'
+import LoadingSpinner from './LoadingSpinner'
+
+const Contact = () => {
+  const { t } = useTranslation();
+  const { sendEmail, isLoading, error, resetError } = useEmailJS();
+  const { trackContactFormSubmit, trackSocialLinkClick } = useAnalytics();
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    subject: '',
+    message: ''
+  })
+  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [submitMessage, setSubmitMessage] = useState('')
+
+  const contactInfo = [
+    {
+      icon: FiMail,
+      title: t('contact.email'),
+      value: 'josesantinoarroyo01@gmail.com',
+      href: 'mailto:josesantinoarroyo01@gmail.com'
+    },
+    {
+      icon: FiPhone,
+      title: t('contact.phone'),
+      value: '+54 3576 448401',
+      href: 'tel:+543576448401'
+    },
+    {
+      icon: FiMapPin,
+      title: t('contact.location'),
+      value: t('contact.locationValue'),
+      href: '#'
+    }
+  ]
+
+  const socialLinks = [
+    { label: 'GitHub', href: 'https://github.com/santinoarroyo', icon: FiGithub },
+    { label: 'LinkedIn', href: 'https://linkedin.com/in/santino-arroyo-628090239', icon: FiLinkedin },
+  ]
+
+  const handleSubmit = useCallback(async (e: React.FormEvent) => {
+    e.preventDefault()
+    resetError()
+
+    const trimmed = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim()
+    }
+
+    if (!trimmed.name || !trimmed.email || !trimmed.subject || !trimmed.message) {
+      setSubmitMessage(t('contact.validationRequired'))
+      trackContactFormSubmit(false)
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(trimmed.email)) {
+      setSubmitMessage(t('contact.validationEmail'))
+      trackContactFormSubmit(false)
+      return
+    }
+
+    const response = await sendEmail(trimmed)
+
+    if (response.success) {
+      setIsSubmitted(true)
+      setSubmitMessage(response.message)
+      setFormData({ name: '', email: '', subject: '', message: '' })
+      trackContactFormSubmit(true)
+
+      // Reset success message after 5 seconds
+      setTimeout(() => {
+        setIsSubmitted(false)
+        setSubmitMessage('')
+      }, 5000)
+    } else {
+      setSubmitMessage(response.message)
+      trackContactFormSubmit(false)
+    }
+  }, [formData, sendEmail, resetError, t, trackContactFormSubmit])
+
+  const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (error) resetError()
+    setFormData(prev => ({
+      ...prev,
+      [e.target.name]: e.target.value
+    }))
+  }, [error, resetError])
+
+  return (
+    <section id="contact" className="py-20 relative bg-dark-950">
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-dark-950 to-black pointer-events-none" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <motion.div
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
+          className="text-center mb-16"
+        >
+          <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
+              {t('contact.title')}
+            </span>
+          </h2>
+          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+            {t('contact.subtitle')}
+          </p>
+        </motion.div>
+
+        <div className="grid lg:grid-cols-2 gap-12">
+          {/* Contact Information */}
+          <motion.div
+            initial={{ opacity: 0, x: -50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="space-y-8"
+          >
+            <div>
+              <h3 className="text-2xl font-bold text-white mb-6">{t('contact.letsTalk')}</h3>
+              <p className="text-gray-300 leading-relaxed mb-8 text-lg">
+                {t('contact.intro')}
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {contactInfo.map((info, index) => (
+                <motion.a
+                  key={info.title}
+                  href={info.href}
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  whileHover={{ x: 10, backgroundColor: 'rgba(255,255,255,0.05)' }}
+                  className="flex items-center space-x-4 p-4 rounded-xl transition-all duration-300 border border-transparent hover:border-white/10"
+                >
+                  <div className="w-12 h-12 bg-gradient-to-br from-primary-500 to-secondary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-500/20">
+                    <info.icon className="w-5 h-5 text-white" />
+                  </div>
+                  <div>
+                    <p className="font-medium text-white">{info.title}</p>
+                    <p className="text-gray-400">{info.value}</p>
+                  </div>
+                </motion.a>
+              ))}
+            </div>
+
+            {/* Social Links */}
+            <div className="pt-8">
+              <h4 className="text-lg font-bold text-white mb-4">{t('contact.follow')}</h4>
+              <div className="flex space-x-4">
+                {socialLinks.map((social, index) => (
+                  <motion.a
+                    key={social.label}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    initial={{ opacity: 0, scale: 0 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: index * 0.1 }}
+                    viewport={{ once: true }}
+                    whileHover={{ scale: 1.1, y: -5 }}
+                    whileTap={{ scale: 0.9 }}
+                    onClick={() => trackSocialLinkClick(social.label.toLowerCase())}
+                    className="w-12 h-12 glass rounded-xl flex items-center justify-center text-gray-400 hover:text-white hover:bg-primary-500/20 transition-all duration-300"
+                  >
+                    <social.icon className="w-6 h-6" />
+                  </motion.a>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Contact Form */}
+          <motion.div
+            initial={{ opacity: 0, x: 50 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="glass-dark rounded-3xl p-8 border border-white/10 shadow-2xl"
+          >
+            <h3 className="text-2xl font-bold text-white mb-6">{t('contact.formTitle')}</h3>
+
+            {!isSubmitted && !error && submitMessage && (
+              <div className="mb-6 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-amber-100 text-sm">
+                {submitMessage}
+              </div>
+            )}
+
+            {isSubmitted ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-12"
+              >
+                <div className="w-20 h-20 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <FiCheck className="w-10 h-10 text-green-400" />
+                </div>
+                <h4 className="text-2xl font-bold text-white mb-2">{t('contact.sent')}</h4>
+                <p className="text-gray-400">{submitMessage}</p>
+              </motion.div>
+            ) : error ? (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="text-center py-12"
+              >
+                <div className="w-20 h-20 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-6">
+                  <FiAlertCircle className="w-10 h-10 text-red-400" />
+                </div>
+                <h4 className="text-2xl font-bold text-white mb-2">Error</h4>
+                <p className="text-gray-400 mb-6">{submitMessage}</p>
+                <button
+                  onClick={() => {
+                    resetError()
+                    setSubmitMessage('')
+                  }}
+                  className="px-8 py-3 bg-primary-600 text-white rounded-xl hover:bg-primary-700 transition-colors"
+                >
+                  Intentar de nuevo
+                </button>
+              </motion.div>
+            ) : (
+              <form onSubmit={handleSubmit} className="space-y-6">
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="space-y-2">
+                    <label htmlFor="name" className="block text-sm font-medium text-gray-400 ml-1">{t('contact.name')}</label>
+                    <input
+                      type="text"
+                      id="name"
+                      name="name"
+                      value={formData.name}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all duration-300"
+                      placeholder={t('contact.placeholderName')}
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label htmlFor="email" className="block text-sm font-medium text-gray-400 ml-1">{t('contact.email')}</label>
+                    <input
+                      type="email"
+                      id="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleChange}
+                      required
+                      className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all duration-300"
+                      placeholder={t('contact.placeholderEmail')}
+                    />
+                  </div>
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="subject" className="block text-sm font-medium text-gray-400 ml-1">{t('contact.subject')}</label>
+                  <input
+                    type="text"
+                    id="subject"
+                    name="subject"
+                    value={formData.subject}
+                    onChange={handleChange}
+                    required
+                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all duration-300"
+                    placeholder={t('contact.placeholderSubject')}
+                  />
+                </div>
+
+                <div className="space-y-2">
+                  <label htmlFor="message" className="block text-sm font-medium text-gray-400 ml-1">{t('contact.message')}</label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange}
+                    required
+                    rows={5}
+                    className="w-full px-4 py-3 bg-black/20 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500 transition-all duration-300 resize-none"
+                    placeholder={t('contact.placeholderMessage')}
+                  />
+                </div>
+
+                <motion.button
+                  type="submit"
+                  disabled={isLoading}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="w-full btn-primary py-4 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {isLoading ? (
+                    <>
+                      <LoadingSpinner size="sm" color="white" />
+                      <span>{t('contact.sending')}</span>
+                    </>
+                  ) : (
+                    <>
+                      <FiSend className="w-5 h-5" />
+                      <span>{t('contact.send')}</span>
+                    </>
+                  )}
+                </motion.button>
+              </form>
+            )}
+          </motion.div>
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Contact
