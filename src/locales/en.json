@@ -4,13 +4,12 @@
     "about": "About Me",
     "skills": "Skills",
     "projects": "Projects",
-    "contact": "Contact",
-    "analytics": "Analytics"
+    "contact": "Contact"
   },
   "hero": {
     "greeting": "Hi! I'm",
-    "title": "Systems Engineering Student & Data Scientist",
-    "description": "Advanced Systems Engineering student, passionate about Artificial Intelligence and data science. Member of the GISAI research group and the DataStatLab laboratory, where I apply my knowledge in development and data visualization.",
+    "title": "Data Scientist & AI Engineer",
+    "description": "Advanced Systems Engineering student at UTN FRSFCO. Specialized in Data Science and Artificial Intelligence. Member of the GISAI research group and the DataStatLab laboratory. Transforming data into intelligent solutions.",
     "viewProjects": "View Projects",
     "downloadCV": "Download CV"
   },
@@ -28,7 +27,7 @@
     "email": "Email",
     "phone": "Phone",
     "age": "Age",
-    "ageValue": "21 years old",
+    "ageValue": "22 years old",
     "exp1": {
       "year": "2024 - Present",
       "title": "Disertante en 'Cursos para la SECU'",
@@ -68,11 +67,21 @@
     "ai": "AI",
     "data": "Data",
     "speaking": "Speaking",
+    "desarrollo": "Development",
     "featured": "Featured",
     "details": "View Details",
     "code": "Code",
     "gallery": "Gallery",
     "demo": "View Demo",
+    "p6": {
+      "title": "Data Automation & Analytics for Metalúrgica Cesca",
+      "description": "End-to-end Docker + n8n pipeline for Cesca data, Looker dashboards, and K-Means customer segmentation.",
+      "details": "University-industry project (UTN FRSFCO, GISAI) with Metalúrgica Cesca. With Gonzalo Nazzetta and Belén Silvano Ruata and mentored by Rebeca Yuan, we delivered an end-to-end solution: \n\n- Orchestration in n8n on Docker: automatic file detection, Python cleaning/validation, duplicate control, folder housekeeping, GitHub versioning.\n- Data on Google Cloud (Sheets/Drive) structured by customers, billing, and debtors.\n- Executive dashboards in Google Looker Studio with KPIs for decision-making.\n- Advanced analytics: customer segmentation using K-Means.\n- Full documentation: user manual and technical guide for maintenance and scalability.\n\nTech: Docker, n8n, Python, Google Cloud APIs, Looker Studio, GitHub, K-Means.",
+      "tech1": "Docker + n8n",
+      "tech2": "Python",
+      "tech3": "Google Cloud / Looker",
+      "tech4": "K-Means"
+    },
     "p1": {
       "title": "Research and Development in Time Series",
       "description": "As a member of GISAI, I developed prediction models (SARIMA and LSTM) to analyze the behavior of photovoltaic production at UTN, applying AI and Deep Learning.",
@@ -98,6 +107,42 @@
       "tech1": "Artificial Intelligence",
       "tech2": "Smart Grids",
       "tech3": "Public Speaking"
+    },
+    "p4": {
+      "title": "Speaker at RPIC 2025",
+      "description": "Presentation of paper on predictive models at RPIC 2025 Congress at UTN San Francisco.",
+      "details": "I was a speaker at the Information and Control Processing Meeting (RPIC) 2025, presenting our research work on the application of predictive models (SARIMA, LSTM) for photovoltaic production estimation. This event brings together experts in control and signal processing from across the country.",
+      "tech1": "Research",
+      "tech2": "Public Speaking",
+      "tech3": "Scientific Publication",
+      "tech4": "Congress"
+    },
+    "p5": {
+      "title": "Statistical Process Simulator (SoEP)",
+      "description": "Web platform for modeling, simulation and analysis of production processes with statistical rigor.",
+      "details": "The Statistical Process Simulator (SoEP) is a web platform designed to model, simulate and analyze production or operational processes. It integrates a discrete event simulation engine (SimPy) with a visual interface (React Flow). Features: Visual modeling, advanced statistical distributions, multiple replicas execution, results dashboard with KPIs and economic analysis (NPV, IRR). Stack: FastAPI, PostgreSQL, Redis, Next.js, Tailwind CSS, Docker.",
+      "tech1": "Python (FastAPI/SimPy)",
+      "tech2": "React (Next.js)",
+      "tech3": "PostgreSQL/Redis",
+      "tech4": "Docker"
+    },
+    "p6": {
+      "title": "Data Automation & Analytics for Metalúrgica Cesca",
+      "description": "End-to-end Docker + n8n pipeline for Cesca data, Looker dashboards, and K-Means customer segmentation.",
+      "details": "University-industry project (UTN FRSFCO, GISAI) with Metalúrgica Cesca. With Gonzalo Nazzetta and Belén Silvano Ruata and mentored by Rebeca Yuan, we delivered an end-to-end solution: \n\n- Orchestration in n8n on Docker: automatic file detection, Python cleaning/validation, duplicate control, folder housekeeping, GitHub versioning.\n- Data on Google Cloud (Sheets/Drive) structured by customers, billing, and debtors.\n- Executive dashboards in Google Looker Studio with KPIs for decision-making.\n- Advanced analytics: customer segmentation using K-Means.\n- Full documentation: user manual and technical guide for maintenance and scalability.\n\nTech: Docker, n8n, Python, Google Cloud APIs, Looker Studio, GitHub, K-Means.",
+      "tech1": "Docker + n8n",
+      "tech2": "Python",
+      "tech3": "Google Cloud / Looker",
+      "tech4": "K-Means"
+    },
+    "p7": {
+      "title": "Web System for Car Dealership",
+      "description": "Full-stack web development for automotive dealership with inventory management and catalog system.",
+      "details": "Full-stack development of a web platform for automotive dealership. The system includes inventory management, vehicle catalog, advanced filtering system, and administration panel. Implemented with modern technologies and responsive design to ensure the best user experience.",
+      "tech1": "React",
+      "tech2": "Node.js",
+      "tech3": "Database",
+      "tech4": "REST API"
     }
   },
   "contact": {
@@ -121,7 +166,9 @@
     "placeholderName": "Your name",
     "placeholderEmail": "your@email.com",
     "placeholderSubject": "How can I help you?",
-    "placeholderMessage": "Tell me about your project..."
+    "placeholderMessage": "Tell me about your project...",
+    "validationRequired": "Please fill in all the fields before sending.",
+    "validationEmail": "Please enter a valid email address."
   },
   "footer": {
     "student": "Systems Engineering student and Data Scientist, passionate about Artificial Intelligence and the development of innovative technological solutions.",
@@ -133,20 +180,5 @@
     "rights": "All rights reserved.",
     "madeWith": "Made with",
     "inArgentina": "in Argentina"
-  },
-  "analytics": {
-    "title": "Analytics Dashboard",
-    "subtitle": "Portfolio metrics and statistics",
-    "realTimeData": "Real-time data",
-    "lastUpdate": "Last updated:",
-    "pageViews": "Page Views",
-    "cvDownloads": "CV Downloads",
-    "contactForms": "Contact Forms",
-    "projectClicks": "Project Clicks",
-    "avgTimeOnPage": "Avg. Time on Page",
-    "bounceRate": "Bounce Rate",
-    "recentActivity": "Recent Activity",
-    "daysAgo": "7 days ago",
-    "today": "Today"
   }
 } 

@@ -12,6 +12,14 @@ const Projects = () => {
   const [activeFilter, setActiveFilter] = useState('all')
   const [selectedProject, setSelectedProject] = useState<Project | null>(null)
 
+  const categoryLabels = useMemo(() => ({
+    ai: t('projects.ai'),
+    data: t('projects.data'),
+    speaking: t('projects.speaking'),
+    desarrollo: t('projects.desarrollo'),
+    all: t('projects.all')
+  }), [t])
+
   // Memoizar los proyectos para evitar re-renders innecesarios
   const projects: Project[] = useMemo(() => [
     {
@@ -71,12 +79,40 @@ const Projects = () => {
       title: t('projects.p5.title'),
       description: t('projects.p5.description'),
       detailedDescription: t('projects.p5.details'),
-      category: 'data',
+      category: 'desarrollo',
       technologies: [t('projects.p5.tech1'), t('projects.p5.tech2'), t('projects.p5.tech3'), t('projects.p5.tech4')],
       liveUrl: '#',
       githubUrl: '#',
       featured: false,
       images: [] // TODO: Add software screenshots
+    },
+    {
+      id: 6,
+      title: t('projects.p6.title'),
+      description: t('projects.p6.description'),
+      detailedDescription: t('projects.p6.details'),
+      category: 'data',
+      technologies: [t('projects.p6.tech1'), t('projects.p6.tech2'), t('projects.p6.tech3'), t('projects.p6.tech4')],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: true,
+      images: [
+        '/proyectos/cesca-automations.png',
+        '/proyectos/cesca-dashboards.png',
+        '/proyectos/cesca-segmentation.png'
+      ]
+    },
+    {
+      id: 7,
+      title: t('projects.p7.title'),
+      description: t('projects.p7.description'),
+      detailedDescription: t('projects.p7.details'),
+      category: 'desarrollo',
+      technologies: [t('projects.p7.tech1'), t('projects.p7.tech2'), t('projects.p7.tech3'), t('projects.p7.tech4')],
+      liveUrl: '#',
+      githubUrl: '#',
+      featured: false,
+      images: [] // TODO: Add concesionaria screenshots
     }
   ], [t])
 
@@ -84,6 +120,7 @@ const Projects = () => {
     { id: 'all', label: t('projects.all'), icon: FiGlobe },
     { id: 'ai', label: t('projects.ai'), icon: FiCpu },
     { id: 'data', label: t('projects.data'), icon: FiDatabase },
+    { id: 'desarrollo', label: t('projects.desarrollo'), icon: FiCode },
     { id: 'speaking', label: t('projects.speaking'), icon: FiMic }
   ], [t])
 
@@ -100,28 +137,26 @@ const Projects = () => {
   }, [trackFilterChange])
 
   return (
-    <section id="projects" className="py-32 relative bg-dark-950">
-      {/* Background Elements */}
+    <section id="projects" className="py-24 relative bg-dark-950">
+      {/* Professional Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-[600px] h-[600px] bg-neon-cyan/5 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-neon-purple/5 rounded-full blur-[120px]" />
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center opacity-10 [mask-image:linear-gradient(180deg,transparent,white,transparent)]" />
+        <div className="absolute top-1/4 right-0 w-[500px] h-[500px] bg-primary-500/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-secondary-500/5 rounded-full blur-[120px]" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1890ff08_1px,transparent_1px),linear-gradient(to_bottom,#1890ff08_1px,transparent_1px)] bg-[size:40px_40px]" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
+          transition={{ duration: 0.6 }}
           viewport={{ once: true }}
-          className="text-center mb-20"
+          className="mb-16"
         >
-          <h2 className="section-title">
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-gray-200 to-gray-400">
-              {t('projects.title')}
-            </span>
+          <h2 className="section-title text-center">
+            {t('projects.title')}
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto font-light">
+          <p className="text-lg text-gray-400 max-w-2xl mx-auto text-center">
             {t('projects.subtitle')}
           </p>
         </motion.div>
@@ -137,13 +172,14 @@ const Projects = () => {
           {filters.map((filter) => (
             <motion.button
               key={filter.id}
-              whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(0,243,255,0.2)" }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={() => handleFilterChange(filter.id)}
-              className={`flex items-center space-x-2 px-6 py-3 rounded-full font-medium transition-all duration-300 border ${activeFilter === filter.id
-                ? 'bg-neon-cyan/10 border-neon-cyan text-neon-cyan shadow-[0_0_15px_rgba(0,243,255,0.3)]'
-                : 'bg-white/5 border-white/5 text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20'
-                }`}
+              className={`flex items-center gap-2 px-6 py-2.5 rounded-lg font-medium transition-all duration-300 ${
+                activeFilter === filter.id
+                  ? 'bg-primary-500 text-white shadow-lg shadow-primary-500/30'
+                  : 'bg-white/5 border border-white/10 text-gray-400 hover:text-white hover:bg-white/10 hover:border-white/20'
+              }`}
             >
               <filter.icon className="w-4 h-4" />
               <span>{filter.label}</span>
@@ -176,6 +212,12 @@ const Projects = () => {
                 <div className="relative h-64 overflow-hidden shrink-0">
                   <div className="absolute inset-0 bg-gradient-to-t from-dark-950 via-transparent to-transparent z-10 opacity-80" />
                   <div className="absolute inset-0 bg-neon-cyan/20 mix-blend-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-20" />
+
+                  <div className="absolute top-4 right-4 z-30 flex gap-2">
+                    <span className="rounded-full bg-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide border border-white/15 text-gray-100">
+                      {categoryLabels[project.category] || project.category}
+                    </span>
+                  </div>
 
                   {project.images && project.images[0] ? (
                     <img

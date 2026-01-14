@@ -5,7 +5,7 @@ export interface Project {
   title: string;
   description: string;
   detailedDescription: string;
-  category: 'ai' | 'data' | 'speaking' | 'web' | 'mobile';
+  category: 'ai' | 'data' | 'speaking' | 'desarrollo' | 'web' | 'mobile';
   technologies: string[];
   liveUrl: string;
   githubUrl: string;

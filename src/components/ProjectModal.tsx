@@ -1,18 +1,24 @@
-import { motion, AnimatePresence } from 'framer-motion';
-import { FiX, FiGithub, FiExternalLink } from 'react-icons/fi';
-import { useState } from 'react';
-import { useTranslation } from 'react-i18next';
+import { motion, AnimatePresence } from 'framer-motion'
+import { FiX, FiGithub, FiExternalLink } from 'react-icons/fi'
+import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
+import { Project } from '../types'
 
-const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void }) => {
-  const [zoomImg, setZoomImg] = useState<string | null>(null);
-  const { t } = useTranslation();
-  if (!project) return null;
+interface ProjectModalProps {
+  project: Project | null
+  onClose: () => void
+}
+
+const ProjectModal = ({ project, onClose }: ProjectModalProps) => {
+  const [zoomImg, setZoomImg] = useState<string | null>(null)
+  const { t } = useTranslation()
+  if (!project) return null
 
   // Función para convertir saltos de línea y negritas en HTML
   function markdownToHtml(text: string) {
     return text
       .replace(/\*\*(.*?)\*\*/g, '<strong class="text-neon-cyan">$1</strong>')
-      .replace(/\n/g, '<br/>');
+      .replace(/\n/g, '<br/>')
   }
 
   return (
@@ -56,7 +62,7 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
               <div>
                 <h2 className="text-4xl font-bold text-white mb-4">{project.title}</h2>
                 <div className="flex flex-wrap gap-2">
-                  {project.technologies.map((tech: any) => (
+                  {project.technologies.map((tech) => (
                     <span key={tech} className="px-4 py-1.5 bg-neon-cyan/10 text-neon-cyan border border-neon-cyan/20 rounded-full text-sm font-medium">
                       {tech}
                     </span>
@@ -104,7 +110,7 @@ const ProjectModal = ({ project, onClose }: { project: any, onClose: () => void 
                   {t('projects.gallery')}
                 </h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {project.images.map((img: any, index: any) => (
+                  {project.images.map((img: string, index: number) => (
                     <motion.div
                       key={index}
                       whileHover={{ scale: 1.02 }}

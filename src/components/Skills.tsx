@@ -15,7 +15,7 @@ const Skills = () => {
         { name: 'Prompt Engineering', level: 85, color: 'from-neon-cyan to-neon-blue' },
         { name: 'Generative AI Tools', level: 85, color: 'from-neon-purple to-neon-pink' },
         { name: 'Machine Learning', level: 75, color: 'from-neon-purple to-neon-blue' },
-        { name: 'Power BI, Tableau, Looker', level: 75, color: 'from-yellow-400 to-orange-500' },
+        { name: 'Power BI, Tableau, Looker', level: 80, color: 'from-yellow-400 to-orange-500' },
         { name: t('skills.predictiveModels'), level: 70, color: 'from-neon-blue to-neon-purple' },
         { name: 'Deep Learning (LSTM)', level: 70, color: 'from-neon-cyan to-neon-purple' },
       ]
@@ -36,6 +36,7 @@ const Skills = () => {
       skills: [
         { name: 'Git & GitHub', level: 80, color: 'from-orange-500 to-red-500' },
         { name: 'n8n (Automatización)', level: 75, color: 'from-neon-pink to-red-500' },
+        { name: 'Docker', level: 80, color: 'from-sky-400 to-blue-700' },
         { name: t('skills.algorithms'), level: 90, color: 'from-neon-cyan to-green-400' },
         { name: 'Microsoft Office', level: 85, color: 'from-blue-600 to-blue-800' },
       ]

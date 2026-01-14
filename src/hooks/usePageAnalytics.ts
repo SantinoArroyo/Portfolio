@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react'
 import { useAnalytics } from './useAnalytics'
 
 export const usePageAnalytics = () => {
-  const { trackEvent } = useAnalytics()
+  const { trackEvent, trackPageView } = useAnalytics()
   const startTimeRef = useRef<number>(Date.now())
   const maxScrollRef = useRef<number>(0)
 
@@ -67,13 +67,18 @@ export const usePageAnalytics = () => {
       label: window.location.pathname
     })
 
+    trackPageView({
+      page_title: document.title,
+      page_location: window.location.href
+    })
+
     // Cleanup
     return () => {
       window.removeEventListener('beforeunload', handleBeforeUnload)
       window.removeEventListener('scroll', handleScroll)
       document.removeEventListener('visibilitychange', handleVisibilityChange)
     }
-  }, [trackEvent])
+  }, [trackEvent, trackPageView])
 
   return {
     startTime: startTimeRef.current,

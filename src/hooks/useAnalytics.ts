@@ -1,5 +1,6 @@
 import { useCallback } from 'react'
 import { updateSessionData } from '../services/analyticsService'
+import { ANALYTICS_CONFIG } from '../config/analytics'
 
 // Tipos para los eventos de Analytics
 interface AnalyticsEvent {
@@ -20,31 +21,42 @@ declare global {
     gtag: (
       command: 'event' | 'config' | 'set',
       targetId: string,
-      config?: Record<string, any>
+      config?: Record<string, unknown>
     ) => void
   }
+}
+
+const getGtag = () => (typeof window !== 'undefined' ? window.gtag : undefined)
+
+const withGtag = (
+  command: 'event' | 'config' | 'set',
+  targetId: string,
+  config?: Record<string, unknown>
+) => {
+  const gtag = getGtag()
+  if (!gtag) return false
+  gtag(command, targetId, config)
+  return true
 }
 
 export const useAnalytics = () => {
   // Función para enviar eventos personalizados
   const trackEvent = useCallback((event: AnalyticsEvent) => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('event', event.action, {
-        event_category: event.category,
-        event_label: event.label,
-        value: event.value
-      })
-    }
+    withGtag('event', event.action, {
+      event_category: event.category,
+      event_label: event.label,
+      value: event.value
+    })
   }, [])
 
   // Función para trackear vistas de página
   const trackPageView = useCallback((pageView: PageViewEvent) => {
-    if (typeof window !== 'undefined' && window.gtag) {
-      window.gtag('config', 'G-XXXXXXXXXX', {
-        page_title: pageView.page_title,
-        page_location: pageView.page_location
-      })
-    }
+    const measurementId = ANALYTICS_CONFIG.MEASUREMENT_ID
+    withGtag('config', measurementId, {
+      page_title: pageView.page_title,
+      page_location: pageView.page_location
+    })
+    updateSessionData('pageViews')
   }, [])
 
   // Eventos específicos del portfolio

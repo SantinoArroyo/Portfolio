@@ -52,7 +52,7 @@ export const initializeAnalytics = () => {
 // Función para enviar eventos personalizados
 export const sendAnalyticsEvent = (
   eventName: string,
-  parameters: Record<string, any> = {}
+  parameters: Record<string, unknown> = {}
 ) => {
   if (typeof window !== 'undefined' && window.gtag) {
     window.gtag('event', eventName, parameters)

@@ -1,8 +1,8 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { FiEye, FiDownload, FiMail, FiUsers, FiTrendingUp, FiBarChart, FiRefreshCw } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
-import { fetchAnalyticsData, getRealTimeData, getTrends, formatNumber, formatTime, AnalyticsData } from '../services/analyticsService'
+import { fetchAnalyticsData, getRealTimeData, formatNumber, formatTime, AnalyticsData } from '../services/analyticsService'
 
 interface MetricCard {
   title: string
@@ -16,6 +16,7 @@ interface MetricCard {
 const AnalyticsDashboard = () => {
   const { t } = useTranslation()
   const [isVisible, setIsVisible] = useState(false)
+  const [errorMessage, setErrorMessage] = useState('')
   const [metrics, setMetrics] = useState<MetricCard[]>([
     {
       title: t('analytics.pageViews'),
@@ -71,9 +72,50 @@ const AnalyticsDashboard = () => {
   const [isRefreshing, setIsRefreshing] = useState(false)
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null)
 
+  const loadAnalyticsData = useCallback(async () => {
+    setIsRefreshing(true)
+    setErrorMessage('')
+    try {
+      const data = await fetchAnalyticsData()
+      setAnalyticsData(data)
+      setLastUpdated(new Date())
+      setMetrics(prev => prev.map(metric => {
+        let value: string | number = 0
+        switch (metric.key) {
+          case 'pageViews':
+            value = formatNumber(data.pageViews)
+            break
+          case 'cvDownloads':
+            value = formatNumber(data.cvDownloads)
+            break
+          case 'contactForms':
+            value = formatNumber(data.contactForms)
+            break
+          case 'projectClicks':
+            value = formatNumber(data.projectClicks)
+            break
+          case 'avgTimeOnPage':
+            value = formatTime(data.avgTimeOnPage)
+            break
+          case 'bounceRate':
+            value = `${data.bounceRate}%`
+            break
+        }
+        return { ...metric, value }
+      }))
+      setIsVisible(true)
+    } catch (error) {
+      console.error('Error loading analytics data:', error)
+      setErrorMessage(t('analytics.error'))
+      setIsVisible(true)
+    } finally {
+      setIsRefreshing(false)
+    }
+  }, [t])
+
   useEffect(() => {
     loadAnalyticsData()
-  }, [])
+  }, [loadAnalyticsData])
 
   // Actualizar títulos de métricas cuando cambie el idioma
   useEffect(() => {
@@ -99,52 +141,6 @@ const AnalyticsDashboard = () => {
       })()
     })))
   }, [t])
-
-  const loadAnalyticsData = async () => {
-    setIsRefreshing(true)
-    try {
-      const data = await fetchAnalyticsData()
-      setAnalyticsData(data)
-      setLastUpdated(new Date())
-      
-      // Actualizar métricas con datos reales
-      setMetrics(prev => prev.map(metric => {
-        let value: string | number = 0
-        
-        switch (metric.key) {
-          case 'pageViews':
-            value = formatNumber(data.pageViews)
-            break
-          case 'cvDownloads':
-            value = formatNumber(data.cvDownloads)
-            break
-          case 'contactForms':
-            value = formatNumber(data.contactForms)
-            break
-          case 'projectClicks':
-            value = formatNumber(data.projectClicks)
-            break
-          case 'avgTimeOnPage':
-            value = formatTime(data.avgTimeOnPage)
-            break
-          case 'bounceRate':
-            value = `${data.bounceRate}%`
-            break
-        }
-        
-        return {
-          ...metric,
-          value
-        }
-      }))
-      
-      setIsVisible(true)
-    } catch (error) {
-      console.error('Error loading analytics data:', error)
-    } finally {
-      setIsRefreshing(false)
-    }
-  }
 
   // Actualizar datos en tiempo real
   useEffect(() => {
@@ -216,6 +212,11 @@ const AnalyticsDashboard = () => {
           <p className="text-xl text-gray-400 max-w-3xl mx-auto mb-4">
             {t('analytics.subtitle')}
           </p>
+          {errorMessage && (
+            <div className="mx-auto mb-6 max-w-xl rounded-xl border border-red-500/30 bg-red-500/10 px-4 py-3 text-red-100 text-sm">
+              {errorMessage}
+            </div>
+          )}
           <div className="flex items-center justify-center space-x-2">
             <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
             <span className="text-sm text-green-400">{t('analytics.realTimeData')}</span>

@@ -7,6 +7,11 @@ export const useScrollProgress = () => {
     const calculateScrollProgress = () => {
       const scrollTop = window.scrollY
       const docHeight = document.documentElement.scrollHeight - window.innerHeight
+      if (docHeight <= 0) {
+        setScrollProgress(0)
+        return
+      }
+
       const scrollPercent = scrollTop / docHeight
       setScrollProgress(scrollPercent * 100)
     }

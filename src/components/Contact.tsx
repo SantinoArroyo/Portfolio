@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback } from 'react'
 import { motion } from 'framer-motion'
 import { FiMail, FiPhone, FiMapPin, FiSend, FiCheck, FiGithub, FiLinkedin, FiAlertCircle } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
@@ -50,7 +50,27 @@ const Contact = () => {
     e.preventDefault()
     resetError()
 
-    const response = await sendEmail(formData)
+    const trimmed = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      subject: formData.subject.trim(),
+      message: formData.message.trim()
+    }
+
+    if (!trimmed.name || !trimmed.email || !trimmed.subject || !trimmed.message) {
+      setSubmitMessage(t('contact.validationRequired'))
+      trackContactFormSubmit(false)
+      return
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+    if (!emailRegex.test(trimmed.email)) {
+      setSubmitMessage(t('contact.validationEmail'))
+      trackContactFormSubmit(false)
+      return
+    }
+
+    const response = await sendEmail(trimmed)
 
     if (response.success) {
       setIsSubmitted(true)
@@ -67,14 +87,15 @@ const Contact = () => {
       setSubmitMessage(response.message)
       trackContactFormSubmit(false)
     }
-  }, [formData, sendEmail, resetError])
+  }, [formData, sendEmail, resetError, t, trackContactFormSubmit])
 
   const handleChange = useCallback((e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    if (error) resetError()
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
     }))
-  }, [])
+  }, [error, resetError])
 
   return (
     <section id="contact" className="py-20 relative bg-dark-950">
@@ -173,6 +194,12 @@ const Contact = () => {
             className="glass-dark rounded-3xl p-8 border border-white/10 shadow-2xl"
           >
             <h3 className="text-2xl font-bold text-white mb-6">{t('contact.formTitle')}</h3>
+
+            {!isSubmitted && !error && submitMessage && (
+              <div className="mb-6 rounded-xl border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-amber-100 text-sm">
+                {submitMessage}
+              </div>
+            )}
 
             {isSubmitted ? (
               <motion.div

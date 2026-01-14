@@ -31,12 +31,12 @@ const ScrollProgressEnhanced = ({
     bottom: 'bottom-0'
   }
 
-  // Sección actual
-  let section = '🏠 Inicio'
-  if (scrollProgress >= 25 && scrollProgress < 50) section = '👤 Sobre Mí'
-  else if (scrollProgress >= 50 && scrollProgress < 75) section = '💻 Habilidades'
-  else if (scrollProgress >= 75 && scrollProgress < 90) section = '🚀 Proyectos'
-  else if (scrollProgress >= 90) section = '📧 Contacto'
+  // Sección actual - mejorada sincronización
+  let section = 'Inicio'
+  if (scrollProgress >= 15 && scrollProgress < 35) section = 'Sobre Mí'
+  else if (scrollProgress >= 35 && scrollProgress < 55) section = 'Habilidades'
+  else if (scrollProgress >= 55 && scrollProgress < 80) section = 'Proyectos'
+  else if (scrollProgress >= 80) section = 'Contacto'
 
   return (
     <motion.div 

@@ -35,157 +35,142 @@ const Hero = () => {
   ]
 
   return (
-    <section id="home" ref={containerRef} className="min-h-screen flex items-center justify-center relative overflow-hidden bg-dark-950 perspective-1000">
-      {/* Dynamic Background */}
+    <section id="home" ref={containerRef} className="min-h-screen flex items-center justify-center relative overflow-hidden bg-dark-950">
+      {/* Professional Background */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <motion.div style={{ y: y1 }} className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-neon-cyan/20 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-pulse-slow" />
-        <motion.div style={{ y: y2 }} className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-neon-purple/20 rounded-full mix-blend-screen filter blur-[100px] opacity-30 animate-blob animation-delay-2000" />
-
-        {/* Cyber Grid */}
-        <div className="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
+        {/* Grid Pattern */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#1890ff08_1px,transparent_1px),linear-gradient(to_bottom,#1890ff08_1px,transparent_1px)] bg-[size:40px_40px]" />
+        
+        {/* Gradient Overlays */}
+        <motion.div 
+          style={{ y: y1 }} 
+          className="absolute top-0 right-1/4 w-[600px] h-[600px] bg-primary-500/10 rounded-full mix-blend-screen filter blur-[120px]" 
+        />
+        <motion.div 
+          style={{ y: y2 }} 
+          className="absolute bottom-0 left-1/4 w-[600px] h-[600px] bg-secondary-500/10 rounded-full mix-blend-screen filter blur-[120px]" 
+        />
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
+          initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="space-y-8"
         >
-          {/* Greeting */}
+          {/* Professional Badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, type: "spring" }}
-            className="inline-block px-6 py-2 rounded-full border border-neon-cyan/30 bg-neon-cyan/5 text-neon-cyan font-mono text-sm mb-4 backdrop-blur-md shadow-[0_0_15px_rgba(0,243,255,0.3)]"
+            transition={{ delay: 0.2 }}
+            className="inline-flex items-center px-4 py-2 rounded-full border border-primary-500/20 bg-primary-500/5 backdrop-blur-sm"
           >
-            <span className="animate-pulse mr-2">●</span>
-            {t('hero.greeting')}
+            <span className="w-2 h-2 bg-primary-500 rounded-full mr-3 animate-pulse"></span>
+            <span className="text-primary-400 font-medium text-sm tracking-wide">
+              {t('hero.greeting')}
+            </span>
           </motion.div>
 
-          {/* Name with Glitch Effect */}
-          <div className="relative group">
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.8 }}
-              className="text-7xl md:text-9xl font-black tracking-tighter mb-4"
-            >
-              <span className="text-white relative inline-block">
-                Santino
-                <span className="absolute top-0 left-0 -z-10 w-full h-full text-neon-cyan opacity-0 group-hover:opacity-70 group-hover:animate-glitch group-hover:translate-x-[2px]">Santino</span>
-                <span className="absolute top-0 left-0 -z-10 w-full h-full text-neon-purple opacity-0 group-hover:opacity-70 group-hover:animate-glitch group-hover:-translate-x-[2px] animation-delay-2000">Santino</span>
-              </span>
-              <br className="md:hidden" />
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-neon-purple to-neon-cyan animate-shimmer bg-300%"> Arroyo</span>
-            </motion.h1>
-
-            {/* Decorative Lines */}
-            <div className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 w-24 h-1 bg-gradient-to-r from-transparent via-neon-cyan to-transparent opacity-50" />
-          </div>
-
-          {/* Title */}
+          {/* Name - Professional */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6, duration: 0.8 }}
-            className="text-2xl md:text-4xl text-gray-300 font-light tracking-wide font-mono"
+            transition={{ delay: 0.3, duration: 0.8 }}
           >
-            <span className="text-neon-purple">&lt;</span>
+            <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-white mb-4">
+              Santino Arroyo
+            </h1>
+            <div className="w-24 h-1 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-full"></div>
+          </motion.div>
+
+          {/* Title - Clean */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="text-2xl md:text-3xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-secondary-400 to-primary-500"
+          >
             {t('hero.title')}
-            <span className="text-neon-purple">/&gt;</span>
           </motion.div>
 
           {/* Description */}
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
+            transition={{ delay: 0.7, duration: 0.8 }}
+            className="text-lg text-gray-400 max-w-2xl leading-relaxed"
           >
             {t('hero.description')}
           </motion.p>
 
-          {/* CTA Buttons */}
+          {/* CTA Buttons - Professional */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.8 }}
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center pt-8"
+            transition={{ delay: 0.9, duration: 0.8 }}
+            className="flex flex-col sm:flex-row gap-4 pt-6"
           >
             <motion.button
-              whileHover={{ scale: 1.05, boxShadow: "0 0 30px rgba(0,243,255,0.6)" }}
-              whileTap={{ scale: 0.95 }}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
               onClick={scrollToProjects}
-              className="btn-primary flex items-center space-x-3 group relative overflow-hidden"
+              className="px-8 py-4 bg-primary-500 hover:bg-primary-600 text-white font-semibold rounded-lg transition-all duration-300 shadow-lg shadow-primary-500/20 hover:shadow-primary-500/40"
             >
-              <span className="relative z-10">{t('hero.viewProjects')}</span>
-              <FiArrowDown className="w-5 h-5 group-hover:translate-y-1 transition-transform relative z-10" />
-              <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300" />
+              {t('hero.viewProjects')}
             </motion.button>
 
             <a href="/ArroyoSantino_Cv.pdf" download onClick={trackCVDownload}>
               <motion.button
-                whileHover={{ scale: 1.05, boxShadow: "0 0 20px rgba(188,19,254,0.4)" }}
-                whileTap={{ scale: 0.95 }}
-                className="btn-secondary flex items-center space-x-3 group border-neon-purple/50 text-neon-purple hover:bg-neon-purple/10"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                className="px-8 py-4 border-2 border-gray-700 hover:border-primary-500 text-gray-300 hover:text-white font-semibold rounded-lg transition-all duration-300 flex items-center gap-2"
               >
-                <FiDownload className="w-5 h-5 group-hover:-translate-y-1 transition-transform" />
-                <span>{t('hero.downloadCV')}</span>
+                <FiDownload className="w-5 h-5" />
+                {t('hero.downloadCV')}
               </motion.button>
             </a>
           </motion.div>
 
-          {/* Social Links */}
+          {/* Social Links - Minimalist */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1.2, duration: 0.8 }}
-            className="flex justify-center space-x-8 pt-12"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.1, duration: 0.8 }}
+            className="flex gap-4 pt-8"
           >
-            {socialLinks.map((social, index) => (
+            {socialLinks.map((social) => (
               <motion.a
                 key={social.label}
                 href={social.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 1.4 + index * 0.1 }}
-                whileHover={{ scale: 1.2, y: -5, color: '#00f3ff' }}
+                whileHover={{ scale: 1.1, color: '#1890ff' }}
                 whileTap={{ scale: 0.9 }}
                 onClick={() => trackSocialLinkClick(social.label.toLowerCase())}
-                className="p-4 glass-card rounded-full text-gray-400 hover:text-neon-cyan transition-all duration-300 group relative"
+                className="w-12 h-12 flex items-center justify-center rounded-lg bg-white/5 hover:bg-white/10 border border-white/10 hover:border-primary-500/50 text-gray-400 transition-all duration-300"
               >
-                <div className="absolute inset-0 bg-neon-cyan/20 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                <social.icon className="w-6 h-6 relative z-10" />
+                <social.icon className="w-5 h-5" />
               </motion.a>
             ))}
           </motion.div>
         </motion.div>
       </div>
 
-      {/* Scroll Indicator */}
+      {/* Scroll Indicator - Minimal */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 2 }}
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        transition={{ delay: 1.5 }}
+        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
       >
         <motion.button
           onClick={scrollToAbout}
-          animate={{ y: [0, 10, 0] }}
+          animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity }}
-          className="text-gray-500 hover:text-neon-cyan transition-colors duration-300 flex flex-col items-center gap-2"
+          className="text-gray-500 hover:text-primary-500 transition-colors duration-300"
         >
-          <span className="text-[10px] uppercase tracking-widest opacity-50">Scroll</span>
-          <div className="w-6 h-10 border-2 border-current rounded-full flex justify-center p-1 shadow-[0_0_10px_rgba(0,243,255,0.2)]">
-            <motion.div
-              animate={{ y: [0, 12, 0] }}
-              transition={{ duration: 1.5, repeat: Infinity }}
-              className="w-1 h-2 bg-neon-cyan rounded-full shadow-[0_0_5px_#00f3ff]"
-            />
-          </div>
+          <FiArrowDown className="w-6 h-6" />
         </motion.button>
       </motion.div>
     </section>

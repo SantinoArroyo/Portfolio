@@ -4,13 +4,12 @@
     "about": "Sobre Mí",
     "skills": "Habilidades",
     "projects": "Proyectos",
-    "contact": "Contacto",
-    "analytics": "Analytics"
+    "contact": "Contacto"
   },
   "hero": {
     "greeting": "¡Hola! Soy",
-    "title": "Ingeniería en Sistemas & Data Scientist",
-    "description": "Estudiante avanzado de Ingeniería en Sistemas en UTN FRSFCO. Integrante del grupo de I+D GISAI y del laboratorio DataStatLab. Apasionado por la IA, Data Science y el desarrollo de soluciones innovadoras.",
+    "title": "Data Scientist & IA Engineer",
+    "description": "Estudiante avanzado de Ingeniería en Sistemas en UTN FRSFCO. Especializado en Ciencia de Datos e Inteligencia Artificial. Integrante del grupo de I+D GISAI y del laboratorio DataStatLab. Transformando datos en soluciones inteligentes.",
     "viewProjects": "Ver Proyectos",
     "downloadCV": "Descargar CV"
   },
@@ -28,7 +27,7 @@
     "email": "Email",
     "phone": "Teléfono",
     "age": "Edad",
-    "ageValue": "21 años",
+    "ageValue": "22 años",
     "exp1": {
       "year": "2024 - Actualidad",
       "title": "Disertante en 'Cursos para la SECU'",
@@ -68,6 +67,7 @@
     "ai": "IA",
     "data": "Datos",
     "speaking": "Disertaciones",
+    "desarrollo": "Desarrollo",
     "featured": "Destacado",
     "details": "Ver Detalles",
     "code": "Código",
@@ -116,6 +116,24 @@
       "tech2": "React (Next.js)",
       "tech3": "PostgreSQL/Redis",
       "tech4": "Docker"
+    },
+    "p6": {
+      "title": "Automatización y Analytics para Metalúrgica Cesca",
+      "description": "Arquitectura end-to-end en Docker + n8n para orquestar datos de Cesca, con dashboards en Looker y segmentación K-Means.",
+      "details": "Proyecto de vinculación UTN FRSFCO junto a Metalúrgica Cesca (con GISAI). Con Gonzalo Nazzetta, Belén Silvano Ruata y bajo la supervisión de Rebeca Yuan, construimos una solución end-to-end: \n\n- Orquestación en n8n sobre Docker: detección automática de archivos, limpieza/validación en Python, control de duplicados, housekeeping de carpetas y versionado en GitHub.\n- Datos en Google Cloud (Sheets/Drive) estructurados por clientes, facturación y deudores.\n- Dashboards ejecutivos en Google Looker Studio con KPIs para decisiones gerenciales.\n- Analítica avanzada: segmentación de clientes con K-Means.\n- Documentación completa: manual de uso y guía técnica para mantenimiento/escalabilidad.\n\nTecnologías: Docker, n8n, Python, Google Cloud APIs, Looker Studio, GitHub, K-Means.",
+      "tech1": "Docker + n8n",
+      "tech2": "Python",
+      "tech3": "Google Cloud / Looker",
+      "tech4": "K-Means"
+    },
+    "p7": {
+      "title": "Sistema Web para Concesionaria",
+      "description": "Desarrollo de página web completa para concesionaria de automóviles con gestión de inventario y catálogo.",
+      "details": "Desarrollo full-stack de una plataforma web para concesionaria de automóviles. El sistema incluye gestión de inventario, catálogo de vehículos, sistema de filtrado avanzado y panel de administración. Implementado con tecnologías modernas y diseño responsive para garantizar la mejor experiencia de usuario.",
+      "tech1": "React",
+      "tech2": "Node.js",
+      "tech3": "Base de Datos",
+      "tech4": "API REST"
     }
   },
   "contact": {
@@ -139,7 +157,9 @@
     "placeholderName": "Tu nombre",
     "placeholderEmail": "tu@email.com",
     "placeholderSubject": "¿En qué puedo ayudarte?",
-    "placeholderMessage": "Cuéntame sobre tu proyecto..."
+    "placeholderMessage": "Cuéntame sobre tu proyecto...",
+    "validationRequired": "Completa todos los campos antes de enviar.",
+    "validationEmail": "Ingresa un email válido para poder contactarte."
   },
   "footer": {
     "student": "Estudiante de Ingeniería en Sistemas y Científico de Datos, apasionado por la Inteligencia Artificial y el desarrollo de soluciones tecnológicas innovadoras.",
@@ -151,20 +171,5 @@
     "rights": "Todos los derechos reservados.",
     "madeWith": "Hecho con",
     "inArgentina": "en Argentina"
-  },
-  "analytics": {
-    "title": "Dashboard Analytics",
-    "subtitle": "Métricas y estadísticas del portfolio",
-    "realTimeData": "Datos en tiempo real",
-    "lastUpdate": "Última actualización:",
-    "pageViews": "Vistas de página",
-    "cvDownloads": "Descargas CV",
-    "contactForms": "Formularios enviados",
-    "projectClicks": "Clicks en proyectos",
-    "avgTimeOnPage": "Tiempo en página",
-    "bounceRate": "Tasa de rebote",
-    "recentActivity": "Actividad Reciente",
-    "daysAgo": "Hace 7 días",
-    "today": "Hoy"
   }
 }

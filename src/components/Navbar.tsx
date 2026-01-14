@@ -1,11 +1,12 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiMail, FiBarChart } from 'react-icons/fi'
+import { FiMenu, FiX, FiHome, FiUser, FiCode, FiBriefcase, FiMail } from 'react-icons/fi'
 import { useTranslation } from 'react-i18next'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
+  const [activeSection, setActiveSection] = useState('home')
   const { t, i18n } = useTranslation()
   const [langMenu, setLangMenu] = useState(false)
 
@@ -22,14 +23,13 @@ const Navbar = () => {
     setLangMenu(false)
   }
 
-  const navItems = [
-    { name: t('navbar.home'), href: '#home', icon: FiHome },
-    { name: t('navbar.about'), href: '#about', icon: FiUser },
-    { name: t('navbar.skills'), href: '#skills', icon: FiCode },
-    { name: t('navbar.projects'), href: '#projects', icon: FiBriefcase },
-    { name: t('navbar.contact'), href: '#contact', icon: FiMail },
-    { name: t('navbar.analytics'), href: '#analytics', icon: FiBarChart },
-  ]
+  const navItems = useMemo(() => ([
+    { id: 'home', name: t('navbar.home'), href: '#home', icon: FiHome },
+    { id: 'about', name: t('navbar.about'), href: '#about', icon: FiUser },
+    { id: 'skills', name: t('navbar.skills'), href: '#skills', icon: FiCode },
+    { id: 'projects', name: t('navbar.projects'), href: '#projects', icon: FiBriefcase },
+    { id: 'contact', name: t('navbar.contact'), href: '#contact', icon: FiMail },
+  ]), [t])
 
   const scrollToSection = (href: string) => {
     const element = document.querySelector(href)
@@ -38,6 +38,26 @@ const Navbar = () => {
     }
     setIsOpen(false)
   }
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting && entry.target.id) {
+            setActiveSection(entry.target.id)
+          }
+        })
+      },
+      { rootMargin: '-40% 0px -50% 0px', threshold: 0.2 }
+    )
+
+    navItems.forEach(item => {
+      const section = document.getElementById(item.id)
+      if (section) observer.observe(section)
+    })
+
+    return () => observer.disconnect()
+  }, [navItems])
 
   return (
     <motion.nav
@@ -77,7 +97,11 @@ const Navbar = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => scrollToSection(item.href)}
-              className="relative px-4 py-2 rounded-full text-sm font-medium text-gray-300 hover:text-white hover:bg-white/10 transition-all duration-200"
+              className={`relative px-4 py-2 rounded-full text-sm font-medium transition-all duration-200 ${
+                activeSection === item.id
+                  ? 'text-white bg-white/15 shadow-[0_0_0_1px_rgba(255,255,255,0.08)]'
+                  : 'text-gray-300 hover:text-white hover:bg-white/10'
+              }`}
             >
               {item.name}
             </motion.button>
