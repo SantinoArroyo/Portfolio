@@ -137,12 +137,12 @@
     },
     "p7": {
       "title": "Web System for Car Dealership",
-      "description": "Full-stack web development for automotive dealership with inventory management and catalog system.",
-      "details": "Full-stack development of a web platform for automotive dealership. The system includes inventory management, vehicle catalog, advanced filtering system, and administration panel. Implemented with modern technologies and responsive design to ensure the best user experience.",
-      "tech1": "React",
-      "tech2": "Node.js",
-      "tech3": "Database",
-      "tech4": "REST API"
+      "description": "Full-stack web platform for managing vehicle catalog, inventory, sales and CRM integrated with Mercado Libre and Instagram.",
+      "details": "MG Auto is a comprehensive full-stack web platform developed for a multibrand automotive dealership. It includes: advanced vehicle catalog with smart filtering, inventory management, multimedia upload with AWS S3, integration with Mercado Libre for automatic publishing, Instagram Business integration, complete CRM for customer and sales management, PDF/Excel reporting system, vehicle comparator, and PWA with offline functionality. Backend: Node.js + Express + PostgreSQL. Frontend: React + Vite + Tailwind CSS. Hosted on Vercel + Render + AWS S3.",
+      "tech1": "React + Vite",
+      "tech2": "Node.js + Express",
+      "tech3": "PostgreSQL + AWS S3",
+      "tech4": "CRM & APIs"
     }
   },
   "contact": {

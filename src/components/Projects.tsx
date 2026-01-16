@@ -72,7 +72,10 @@ const Projects = () => {
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
-      images: [] // TODO: Add diploma image when available
+      images: [
+        '/proyectos/Rpic.jpeg',
+        '/proyectos/Rpic2.jpeg'
+      ]
     },
     {
       id: 5,
@@ -119,10 +122,10 @@ const Projects = () => {
       detailedDescription: t('projects.p7.details'),
       category: 'desarrollo',
       technologies: [t('projects.p7.tech1'), t('projects.p7.tech2'), t('projects.p7.tech3'), t('projects.p7.tech4')],
-      liveUrl: '#',
+      liveUrl: 'https://www.mgmultimarcas.com.ar/',
       githubUrl: '#',
-      featured: false,
-      images: [] // TODO: Add concesionaria screenshots
+      featured: true,
+      images: ['/proyectos/MGAuto.png']
     }
   ], [t])
 

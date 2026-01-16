@@ -127,13 +127,13 @@
       "tech4": "K-Means"
     },
     "p7": {
-      "title": "Sistema Web para Concesionaria",
-      "description": "Desarrollo de página web completa para concesionaria de automóviles con gestión de inventario y catálogo.",
-      "details": "Desarrollo full-stack de una plataforma web para concesionaria de automóviles. El sistema incluye gestión de inventario, catálogo de vehículos, sistema de filtrado avanzado y panel de administración. Implementado con tecnologías modernas y diseño responsive para garantizar la mejor experiencia de usuario.",
-      "tech1": "React",
-      "tech2": "Node.js",
-      "tech3": "Base de Datos",
-      "tech4": "API REST"
+      "title": "MG Auto - Plataforma Digital de Concesionaria",
+      "description": "Plataforma web full-stack para gestión de catálogo de vehículos, inventario, ventas y CRM integrado con Mercado Libre e Instagram.",
+      "details": "MG Auto es una plataforma web integral de código completo desarrollada para una concesionaria multimarca. Incluye: catálogo avanzado de vehículos con filtrado inteligente, gestión de inventario, upload de multimedia con AWS S3, integración con Mercado Libre para publicación automática, integración con Instagram Business, CRM completo para gestión de clientes y ventas, sistema de reportes en PDF/Excel, comparador de vehículos y PWA con funcionalidad offline. Backend: Node.js + Express + PostgreSQL. Frontend: React + Vite + Tailwind CSS. Hosted en Vercel + Render + AWS S3.",
+      "tech1": "React + Vite",
+      "tech2": "Node.js + Express",
+      "tech3": "PostgreSQL + AWS S3",
+      "tech4": "CRM y APIs"
     }
   },
   "contact": {
