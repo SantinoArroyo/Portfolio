@@ -48,7 +48,11 @@ const Projects = () => {
       liveUrl: '#',
       githubUrl: '#',
       featured: true,
-      images: ['/proyectos/dashboard-powerbi.jpg', '/proyectos/analisis-datos.jpg']
+      images: [
+        '/proyectos/Data1.jpeg',
+        '/proyectos/Data2.jpeg',
+        '/proyectos/Data3.jpeg'
+      ]
     },
     {
       id: 3,

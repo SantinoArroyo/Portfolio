@@ -92,13 +92,13 @@
       "tech4": "Deep Learning"
     },
     "p2": {
-      "title": "Data Analysis and Visualization",
-      "description": "Development and management of databases, and creation of interactive dashboards.",
-      "details": "In my role at DataStatLab, I am responsible for the entire data lifecycle. From initial collection and cleaning, through storage and management in SQL and NoSQL databases, to processing and transformation for analysis. Finally, I create interactive dashboards and reports using tools like Power BI and Tableau to facilitate data-driven decision making.",
-      "tech1": "Power BI",
-      "tech2": "SQL",
-      "tech3": "Databases",
-      "tech4": "ETL"
+      "title": "Data Analysis and Visualization - DataStatLab",
+      "description": "Expert in data management, descriptive analytics, and visual reporting across multiple platforms.",
+      "details": "Responsible for the complete data lifecycle at DataStatLab. Core responsibilities: (1) Data cleaning and preparation in Excel/Python with validation and integrity checks; (2) Advanced descriptive analysis using Python (Pandas, NumPy, Matplotlib, Seaborn, Plotly) for statistical insights; (3) Database design and management in SQL/NoSQL with optimized architecture; (4) Creation of executive reports in multiple platforms: Power BI, Google Looker Studio, custom HTML dashboards; (5) Specialized visualizations: scatter plots, sunburst diagrams, heatmaps, sankey diagrams, box plots, histograms, violin plots, dendrograms. Expertise in managing large data volumes and generating actionable insights for strategic decision-making.",
+      "tech1": "Power BI / Looker",
+      "tech2": "Python (Pandas/Seaborn)",
+      "tech3": "SQL / Databases",
+      "tech4": "HTML / Reporting"
     },
     "p3": {
       "title": "Speaker at Smart Grids & AI Seminar",
