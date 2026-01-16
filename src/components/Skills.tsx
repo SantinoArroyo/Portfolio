@@ -27,7 +27,7 @@ const Skills = () => {
         { name: 'Python', level: 80, color: 'from-neon-blue to-neon-cyan' },
         { name: 'SQL', level: 80, color: 'from-neon-cyan to-neon-blue' },
         { name: 'C', level: 70, color: 'from-gray-400 to-gray-500' },
-        { name: 'R', level: 60, color: 'from-blue-400 to-blue-600' },
+        { name: 'R', level: 70, color: 'from-blue-400 to-blue-600' },
       ]
     },
     {
