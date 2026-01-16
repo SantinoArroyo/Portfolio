@@ -110,9 +110,10 @@ const Projects = () => {
       githubUrl: '#',
       featured: true,
       images: [
-        '/proyectos/cesca-automations.png',
-        '/proyectos/cesca-dashboards.png',
-        '/proyectos/cesca-segmentation.png'
+        '/proyectos/Cesca.jpeg',
+        '/proyectos/Cesca2.jpeg',
+        '/proyectos/Cesca3.jpeg',
+        '/proyectos/Cesca4.jpeg'
       ]
     },
     {
