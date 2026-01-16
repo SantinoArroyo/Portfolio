@@ -73,15 +73,6 @@
     "code": "Code",
     "gallery": "Gallery",
     "demo": "View Demo",
-    "p6": {
-      "title": "Data Automation & Analytics for Metalúrgica Cesca",
-      "description": "End-to-end Docker + n8n pipeline for Cesca data, Looker dashboards, and K-Means customer segmentation.",
-      "details": "University-industry project (UTN FRSFCO, GISAI) with Metalúrgica Cesca. With Gonzalo Nazzetta and Belén Silvano Ruata and mentored by Rebeca Yuan, we delivered an end-to-end solution: \n\n- Orchestration in n8n on Docker: automatic file detection, Python cleaning/validation, duplicate control, folder housekeeping, GitHub versioning.\n- Data on Google Cloud (Sheets/Drive) structured by customers, billing, and debtors.\n- Executive dashboards in Google Looker Studio with KPIs for decision-making.\n- Advanced analytics: customer segmentation using K-Means.\n- Full documentation: user manual and technical guide for maintenance and scalability.\n\nTech: Docker, n8n, Python, Google Cloud APIs, Looker Studio, GitHub, K-Means.",
-      "tech1": "Docker + n8n",
-      "tech2": "Python",
-      "tech3": "Google Cloud / Looker",
-      "tech4": "K-Means"
-    },
     "p1": {
       "title": "Research and Development in Time Series",
       "description": "As a member of GISAI, I developed prediction models (SARIMA and LSTM) to analyze the behavior of photovoltaic production at UTN, applying AI and Deep Learning.",
